@@ -1,5 +1,7 @@
 import { ThemeProvider } from '@/components/providers/theme-provider'
+import { languages } from '@/i18n/settings'
 import { ChildProps } from '@/types'
+import { dir } from 'i18next'
 import type { Metadata } from 'next'
 import { Inter, Poppins } from 'next/font/google'
 import './globals.css'
@@ -16,14 +18,22 @@ const poppins = Poppins({
 	subsets: ['latin'],
 })
 
+export async function generateStaticParams() {
+	return languages.map(lng => ({ lng }))
+}
+
 export const metadata: Metadata = {
 	title: 'Tide',
 	description: 'Tide is the best choice for cleaning the house.',
 }
 
-export default function RootLayout({ children }: ChildProps) {
+interface Props extends ChildProps {
+	params: { lng: string }
+}
+
+function RootLayout({ children, params: { lng } }: Props) {
 	return (
-		<html lang='en' suppressHydrationWarning>
+		<html lang={lng} dir={dir(lng)} suppressHydrationWarning>
 			<body
 				className={`${inter.variable} ${poppins.variable} overflow-x-hidden`}
 			>
@@ -39,3 +49,5 @@ export default function RootLayout({ children }: ChildProps) {
 		</html>
 	)
 }
+
+export default RootLayout

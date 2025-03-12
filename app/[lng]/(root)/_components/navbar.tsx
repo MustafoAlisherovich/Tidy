@@ -3,7 +3,7 @@ import Logo from '@/components/shared/logo'
 import ModeToggle from '@/components/shared/mode-toggle'
 import { Button } from '@/components/ui/button'
 import { navLinks } from '@/constants'
-import { Instagram } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
 
 function Navbar() {
@@ -26,10 +26,25 @@ function Navbar() {
 				</div>
 
 				<div className='flex items-center gap-2'>
-					<LanguageDropdown />
-					<ModeToggle />
+					<div className='flex items-center gap-2 border-r pr-3'>
+						<LanguageDropdown />
+						<ModeToggle />
+					</div>
 					<Button size={'icon'} variant={'ghost'}>
-						<Instagram />
+						<Image
+							src={'assets/social-media/instagram.svg'}
+							alt='instagram'
+							width={30}
+							height={30}
+						/>
+					</Button>
+					<Button size={'icon'} variant={'ghost'}>
+						<Image
+							src={'assets/social-media/telegram.svg'}
+							alt='telegram'
+							width={30}
+							height={30}
+						/>
 					</Button>
 				</div>
 			</div>
