@@ -1,4 +1,3 @@
-import { ThemeProvider } from '@/components/providers/theme-provider'
 import { languages } from '@/i18n/settings'
 import { ChildProps } from '@/types'
 import { dir } from 'i18next'
@@ -25,6 +24,7 @@ export async function generateStaticParams() {
 export const metadata: Metadata = {
 	title: 'Tide',
 	description: 'Tide is the best choice for cleaning the house.',
+	icons: { icon: '/logo.jpg' },
 }
 
 interface Props extends ChildProps {
@@ -37,14 +37,7 @@ function RootLayout({ children, params: { lng } }: Props) {
 			<body
 				className={`${inter.variable} ${poppins.variable} overflow-x-hidden`}
 			>
-				<ThemeProvider
-					attribute='class'
-					defaultTheme='system'
-					enableSystem
-					disableTransitionOnChange
-				>
-					{children}
-				</ThemeProvider>
+				{children}
 			</body>
 		</html>
 	)

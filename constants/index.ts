@@ -1,13 +1,14 @@
-import { DollarSign, Home, Phone, Sparkles } from 'lucide-react'
+import { CircleHelp, DollarSign, Home, Phone, Sparkles } from 'lucide-react'
 
 export const navLinks = [
-	{ route: '', name: 'Home', icon: Home },
-	{ route: 'service', name: 'Service', icon: Sparkles },
-	{ route: 'price', name: 'Price', icon: DollarSign },
-	{ route: 'Contact', name: 'Contact', icon: Phone },
+	{ route: '', name: 'navLink1', icon: Home },
+	{ route: 'service', name: 'navLink2', icon: Sparkles },
+	{ route: 'price', name: 'navLink3', icon: DollarSign },
+	{ route: 'contact', name: 'navLink4', icon: Phone },
+	{ route: 'help', name: 'navLink5', icon: CircleHelp },
 ]
 
 export const lngs = [
-	{ route: 'uz', label: "O'zbekcha" },
-	{ route: 'ru', label: 'Русский' },
+	{ route: 'uz', label: "O'zb" },
+	{ route: 'ru', label: 'Рус' },
 ]

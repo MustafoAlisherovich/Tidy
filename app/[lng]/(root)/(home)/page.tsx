@@ -1,10 +1,31 @@
-import { translation } from '@/i18n/server'
-import { LngParams } from '@/types'
+import Hero from './_components/hero'
 
-async function Page({ params: { lng } }: LngParams) {
-	const { t } = await translation(lng)
-
-	return <div className='mt-24'>{t('home')}</div>
+function Page() {
+	return (
+		<>
+			<Hero />
+			<h1>
+				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta iste
+				corporis esse fugit doloribus itaque ex nesciunt beatae vitae earum
+				aliquid atque tempora, fuga cupiditate sed quos culpa repellendus quod.
+				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta iste
+				corporis esse fugit doloribus itaque ex nesciunt beatae vitae earum
+				aliquid atque tempora, fuga cupiditate sed quos culpa repellendus quod.
+				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta iste
+				corporis esse fugit doloribus itaque ex nesciunt beatae vitae earum
+				aliquid atque tempora, fuga cupiditate sed quos culpa repellendus quod.
+				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta iste
+				corporis esse fugit doloribus itaque ex nesciunt beatae vitae earum
+				aliquid atque tempora, fuga cupiditate sed quos culpa repellendus quod.
+				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta iste
+				corporis esse fugit doloribus itaque ex nesciunt beatae vitae earum
+				aliquid atque tempora, fuga cupiditate sed quos culpa repellendus quod.
+				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta iste
+				corporis esse fugit doloribus itaque ex nesciunt beatae vitae earum
+				aliquid atque tempora, fuga cupiditate sed quos culpa repellendus quod.
+			</h1>
+		</>
+	)
 }
 
 export default Page

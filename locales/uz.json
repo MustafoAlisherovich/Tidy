@@ -1,3 +1,10 @@
 {
-	"home": "home uz"
+	"navLink1": "Bosh sahifa",
+	"navLink2": "Xizmatlar",
+	"navLink3": "Narxlar",
+	"navLink4": "Aloqa",
+	"navLink5": "Yordam",
+	"heroTitle": "Uyingiz har doim toza!",
+	"heroSpanTitle": "Bizning professional tozalash xizmatimiz bilan ortiqcha tashvishlardan qutuling.",
+	"placingAnOrder": "Buyurtma bering"
 }
