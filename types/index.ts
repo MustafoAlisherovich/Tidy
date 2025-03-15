@@ -5,7 +5,7 @@ export interface ChildProps {
 }
 
 export interface LngParams {
-	params: { lng: string }
+	params: Promise<{ lng: string }>
 }
 export interface ITestimonial {
 	id: string

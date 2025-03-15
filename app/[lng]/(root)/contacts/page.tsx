@@ -3,7 +3,8 @@ import { translation } from '@/i18n/server'
 import { LngParams } from '@/types'
 import { Mail, Phone } from 'lucide-react'
 
-async function Page({ params: { lng } }: LngParams) {
+async function Page({ params }: LngParams) {
+	const { lng } = await params
 	const { t } = await translation(lng)
 
 	return (
