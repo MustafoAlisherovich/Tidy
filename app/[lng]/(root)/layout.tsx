@@ -1,5 +1,6 @@
 import LiveChat from '@/components/shared/live-chat'
 import { ChildProps } from '@/types'
+import Footer from './_components/footer'
 import Navbar from './_components/navbar'
 
 function Layout({ children }: ChildProps) {
@@ -8,6 +9,7 @@ function Layout({ children }: ChildProps) {
 			<Navbar />
 			<main>{children}</main>
 			<LiveChat />
+			<Footer />
 		</div>
 	)
 }

@@ -8,6 +8,7 @@ import useTranslate from '@/hooks/use-translate'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
+import Mobile from './mobile'
 
 function Navbar() {
 	const t = useTranslate()
@@ -17,7 +18,7 @@ function Navbar() {
 			<div className='container mx-auto flex h-full max-w-7xl items-center justify-between'>
 				<div className='flex items-center gap-4'>
 					<Logo />
-					<div className='flex items-center gap-3 border-l pl-2'>
+					<div className='hidden items-center gap-3 border-l pl-2 md:flex'>
 						{navLinks.map(nav => (
 							<Link
 								href={`/${nav.route}`}
@@ -33,30 +34,32 @@ function Navbar() {
 				</div>
 
 				<div className='flex items-center gap-2'>
-					<div className='flex items-center gap-2 border-r pr-3'>
+					<div className='flex items-center gap-2 md:border-r md:pr-3'>
 						<LanguageDropdown />
+						<Mobile />
 					</div>
-					<Link href={'https://instagram.com'}>
-						<Button size={'icon'} variant={'ghost'}>
-							<Image
-								src={'/assets/social-media/instagram.svg'}
-								alt='instagram'
-								width={30}
-								height={30}
-							/>
-						</Button>
-					</Link>
-
-					<Link href={'https://telegram.org'}>
-						<Button size={'icon'} variant={'ghost'}>
-							<Image
-								src={'/assets/social-media/telegram.svg'}
-								alt='telegram'
-								width={30}
-								height={30}
-							/>
-						</Button>
-					</Link>
+					<div className='hidden md:flex'>
+						<Link href={'https://instagram.com'}>
+							<Button size={'icon'} variant={'ghost'}>
+								<Image
+									src={'/assets/social-media/instagram.svg'}
+									alt='instagram'
+									width={30}
+									height={30}
+								/>
+							</Button>
+						</Link>
+						<Link href={'https://telegram.org'}>
+							<Button size={'icon'} variant={'ghost'}>
+								<Image
+									src={'/assets/social-media/telegram.svg'}
+									alt='telegram'
+									width={30}
+									height={30}
+								/>
+							</Button>
+						</Link>
+					</div>
 				</div>
 			</div>
 		</div>

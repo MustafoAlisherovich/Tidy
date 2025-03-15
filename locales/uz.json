@@ -5,7 +5,7 @@
 	"navLink4": "Aloqa",
 	"navLink5": "Yordam",
 	"heroTitle": "Uyingiz har doim toza!",
-	"heroSpanTitle": "Bizning professional tozalash xizmatimiz bilan ortiqcha tashvishlardan qutuling.",
+	"heroDescription": "Bizning professional tozalash xizmatimiz bilan ortiqcha tashvishlardan qutuling.",
 	"placingAnOrder": "Buyurtma bering",
 	"strictSelection": "Qattiq tanlov",
 	"strictTitle": "Barcha tozalagichlar sinov va professional ko'rsatmalardan o'tadi",
@@ -24,5 +24,8 @@
 	"contactTitle": "Biz bilan aloqa qiling",
 	"comments": "Mijozlarning sharhlari",
 	"open": "Ochish",
-	"close": "Yopish"
+	"close": "Yopish",
+	"pages": "Sahifalar",
+	"contacts": "Aloqa",
+	"copyright": "Barcha huquqlar himoyalangan"
 }
