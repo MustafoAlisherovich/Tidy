@@ -4,7 +4,7 @@ export interface ChildProps {
 	children: ReactNode
 }
 
-export interface LngParams extends ChildProps {
+export interface LngParams {
 	params: { lng: string }
 }
 

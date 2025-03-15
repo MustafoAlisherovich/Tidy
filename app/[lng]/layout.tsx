@@ -1,6 +1,6 @@
 import { Toaster } from '@/components/ui/sonner'
 import { languages } from '@/i18n/settings'
-import { LngParams } from '@/types'
+import { ChildProps } from '@/types'
 import { dir } from 'i18next'
 import type { Metadata } from 'next'
 import { Inter, Poppins } from 'next/font/google'
@@ -23,12 +23,12 @@ export async function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-	title: 'Tide',
-	description: 'Tide is the best choice for cleaning the house.',
+	title: 'Cleanliness',
+	description: 'Cleanliness is the best choice for cleaning the house.',
 	icons: { icon: '/logo.jpg' },
 }
 
-interface Props extends LngParams {
+interface Props extends ChildProps {
 	params: { lng: string }
 }
 
