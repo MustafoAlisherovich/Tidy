@@ -13,11 +13,7 @@ function Navbar() {
 	const t = useTranslate()
 
 	return (
-		<div
-			className={cn(
-				'fixed inset-0 z-40 h-20 bg-background/70 backdrop:b transition-all'
-			)}
-		>
+		<div className='inset-0 h-20  transition-all'>
 			<div className='container mx-auto flex h-full max-w-7xl items-center justify-between'>
 				<div className='flex items-center gap-4'>
 					<Logo />

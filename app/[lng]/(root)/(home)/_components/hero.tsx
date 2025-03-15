@@ -8,7 +8,7 @@ function Hero() {
 	const t = useTranslate()
 
 	return (
-		<div className='relative w-full h-screen'>
+		<div className='relative w-full h-[80vh]'>
 			<Image
 				src={'/assets/hero/house1.jpg'}
 				alt='hero'

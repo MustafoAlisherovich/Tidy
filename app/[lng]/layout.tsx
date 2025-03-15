@@ -23,7 +23,7 @@ export async function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-	title: 'Tide',
+	title: 'Cleanliness',
 	description: 'Cleanliness is the best choice for cleaning the house.',
 	icons: { icon: '/logo.jpg' },
 }

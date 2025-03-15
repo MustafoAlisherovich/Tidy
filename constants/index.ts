@@ -1,6 +1,5 @@
 import {
 	CheckCircle,
-	CircleHelp,
 	DollarSign,
 	Heart,
 	Home,
@@ -15,7 +14,6 @@ export const navLinks = [
 	{ route: 'service', name: 'navLink2', icon: Sparkles },
 	{ route: 'price', name: 'navLink3', icon: DollarSign },
 	{ route: 'contacts', name: 'navLink4', icon: Phone },
-	{ route: 'help', name: 'navLink5', icon: CircleHelp },
 ]
 
 export const lngs = [
