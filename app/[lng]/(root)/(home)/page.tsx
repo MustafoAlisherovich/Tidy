@@ -1,29 +1,16 @@
+import { getTestimonials } from '@/service/testimonials.service'
+import FeaturesGuarantees from './_components/features-guarantees'
 import Hero from './_components/hero'
+import Testimonials from './_components/testimonials'
 
-function Page() {
+async function Page() {
+	const testimonials = await getTestimonials()
+
 	return (
 		<>
 			<Hero />
-			<h1>
-				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta iste
-				corporis esse fugit doloribus itaque ex nesciunt beatae vitae earum
-				aliquid atque tempora, fuga cupiditate sed quos culpa repellendus quod.
-				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta iste
-				corporis esse fugit doloribus itaque ex nesciunt beatae vitae earum
-				aliquid atque tempora, fuga cupiditate sed quos culpa repellendus quod.
-				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta iste
-				corporis esse fugit doloribus itaque ex nesciunt beatae vitae earum
-				aliquid atque tempora, fuga cupiditate sed quos culpa repellendus quod.
-				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta iste
-				corporis esse fugit doloribus itaque ex nesciunt beatae vitae earum
-				aliquid atque tempora, fuga cupiditate sed quos culpa repellendus quod.
-				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta iste
-				corporis esse fugit doloribus itaque ex nesciunt beatae vitae earum
-				aliquid atque tempora, fuga cupiditate sed quos culpa repellendus quod.
-				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta iste
-				corporis esse fugit doloribus itaque ex nesciunt beatae vitae earum
-				aliquid atque tempora, fuga cupiditate sed quos culpa repellendus quod.
-			</h1>
+			<FeaturesGuarantees />
+			<Testimonials testimonials={testimonials} />
 		</>
 	)
 }

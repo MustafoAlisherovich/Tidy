@@ -9,7 +9,6 @@ function Hero() {
 
 	return (
 		<div className='relative w-full h-screen'>
-			{/* Background Image */}
 			<Image
 				src={'/assets/hero/house1.jpg'}
 				alt='hero'

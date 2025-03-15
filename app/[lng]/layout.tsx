@@ -1,3 +1,4 @@
+import { Toaster } from '@/components/ui/sonner'
 import { languages } from '@/i18n/settings'
 import { ChildProps } from '@/types'
 import { dir } from 'i18next'
@@ -38,6 +39,7 @@ function RootLayout({ children, params: { lng } }: Props) {
 				className={`${inter.variable} ${poppins.variable} overflow-x-hidden`}
 			>
 				{children}
+				<Toaster position='top-center' />
 			</body>
 		</html>
 	)

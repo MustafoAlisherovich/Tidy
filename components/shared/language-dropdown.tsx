@@ -6,7 +6,6 @@ import { Languages } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -17,25 +16,11 @@ import {
 
 function LanguageDropdown() {
 	const { lng } = useParams()
-	const [isScrolled, setIsScrolled] = useState(false)
-
-	useEffect(() => {
-		const handleScroll = () => {
-			if (window.scrollY > 50) {
-				setIsScrolled(true)
-			} else {
-				setIsScrolled(false)
-			}
-		}
-
-		window.addEventListener('scroll', handleScroll)
-		return () => window.removeEventListener('scroll', handleScroll)
-	}, [])
 
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Languages className={cn('text-white', isScrolled && 'text-black')} />
+				<Languages />
 			</DropdownMenuTrigger>
 			<DropdownMenuContent className='w-30'>
 				<DropdownMenuGroup>
