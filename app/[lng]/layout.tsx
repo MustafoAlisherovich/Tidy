@@ -23,16 +23,18 @@ export async function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-	title: 'Cleanliness',
+	title: 'Tide',
 	description: 'Cleanliness is the best choice for cleaning the house.',
 	icons: { icon: '/logo.jpg' },
 }
 
 interface Props extends ChildProps {
-	params: { lng: string }
+	params: Promise<{ lng: string }>
 }
 
-function RootLayout({ children, params: { lng } }: Props) {
+async function RootLayout({ children, params }: Props) {
+	const { lng } = await params // ✅ `params` ni `await` qildik
+
 	return (
 		<html lang={lng} dir={dir(lng)} suppressHydrationWarning>
 			<body
