@@ -1,6 +1,6 @@
 import { Toaster } from '@/components/ui/sonner'
 import { languages } from '@/i18n/settings'
-import { ChildProps } from '@/types'
+import { LngParams } from '@/types'
 import { dir } from 'i18next'
 import type { Metadata } from 'next'
 import { Inter, Poppins } from 'next/font/google'
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 	icons: { icon: '/logo.jpg' },
 }
 
-interface Props extends ChildProps {
+interface Props extends LngParams {
 	params: { lng: string }
 }
 
