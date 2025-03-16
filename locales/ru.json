@@ -27,5 +27,14 @@
 	"close": "Закрыть",
 	"pages": "Страницы",
 	"contacts": "Контакты",
-	"copyright": "Все права защищены"
+	"copyright": "Все права защищены",
+	"name": "Ваше имя",
+	"telephoneNumber": "Ваш номер телефона",
+	"services": "Услуги",
+	"yourAdress": "Ваш Адрес",
+	"service1": "Уборка дома",
+	"service2": "Мойка плиты",
+	"service3": "Мытье окон",
+	"service4": "Чистка мебели",
+	"totalPrice": "Общая цена"
 }

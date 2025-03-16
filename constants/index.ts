@@ -11,7 +11,7 @@ import {
 
 export const navLinks = [
 	{ route: '', name: 'navLink1', icon: Home },
-	{ route: 'service', name: 'navLink2', icon: Sparkles },
+	{ route: 'services', name: 'navLink2', icon: Sparkles },
 	{ route: 'price', name: 'navLink3', icon: DollarSign },
 	{ route: 'contacts', name: 'navLink4', icon: Phone },
 ]
@@ -26,4 +26,11 @@ export const features = [
 	{ icon: ThumbsUp, title: 'qualityAssurance', text: 'qualityTitle' },
 	{ icon: Heart, title: 'selectedCleaner', text: 'selectedTitle' },
 	{ icon: Shield, title: 'Reliability', text: 'ReliabilityTitle' },
+]
+
+export const servicesList = [
+	{ name: 'service1', price: 100000 },
+	{ name: 'service2', price: 150000 },
+	{ name: 'service3', price: 70000 },
+	{ name: 'service4', price: 110000 },
 ]

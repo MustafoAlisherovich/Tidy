@@ -27,5 +27,14 @@
 	"close": "Yopish",
 	"pages": "Sahifalar",
 	"contacts": "Aloqa",
-	"copyright": "Barcha huquqlar himoyalangan"
+	"copyright": "Barcha huquqlar himoyalangan",
+	"name": "Ismingiz",
+	"telephoneNumber": "Telefon raqamingiz",
+	"services": "Xizmatlar",
+	"yourAdress": "Manzilingiz",
+	"service1": "Uy tozalash",
+	"service2": "Plita yuvish",
+	"service3": "Oynalarni artish",
+	"service4": "Mebel tozalash",
+	"totalPrice": "Umumiy narx"
 }

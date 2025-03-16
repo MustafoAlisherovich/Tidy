@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button'
 import useTranslate from '@/hooks/use-translate'
 import Image from 'next/image'
+import Link from 'next/link'
 
 function Hero() {
 	const t = useTranslate()
@@ -23,12 +24,14 @@ function Hero() {
 				<p className='text-lg mb-6 max-w-lg max-md:text-base'>
 					{t('heroDescription')}
 				</p>
-				<Button
-					size={'lg'}
-					className='px-6 py-3 rounded-lg text-lg font-medium transition max-md:px-4 max-md:py-2 max-md:text-base'
-				>
-					{t('placingAnOrder')}
-				</Button>
+				<Link href={'/services'}>
+					<Button
+						size={'lg'}
+						className='px-6 py-3 rounded-lg text-lg font-medium transition max-md:px-4 max-md:py-2 max-md:text-base'
+					>
+						{t('placingAnOrder')}
+					</Button>
+				</Link>
 			</div>
 		</div>
 	)
