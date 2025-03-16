@@ -67,12 +67,13 @@ function OrderForm() {
 		}
 		navigator.geolocation.getCurrentPosition(
 			position => {
-				const lat = position.coords.latitude
-				const lng = position.coords.longitude
+				const lat = parseFloat(position.coords.latitude.toFixed(6))
+				const lng = parseFloat(position.coords.longitude.toFixed(6))
 				setLocation({ lat, lng })
 				toast.success('Lokatsiya aniqlandi!')
 			},
 			error => {
+				console.error('Lokatsiyani olishda xatolik:', error)
 				toast.error('Lokatsiyani olishda xatolik: ' + error.message)
 			}
 		)
