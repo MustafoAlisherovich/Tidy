@@ -112,7 +112,7 @@ function OrderForm() {
 			form.reset()
 			setLocation(null)
 		} catch (error) {
-			toast.error("Xatolik yuz berdi, qayta urinib ko'ring!")
+			toast.error("Xatolik yuz berdi, qayta urinib ko'ring!", error)
 		} finally {
 			setIsLoading(false)
 		}
