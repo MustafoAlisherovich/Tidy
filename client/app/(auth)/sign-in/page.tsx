@@ -27,7 +27,9 @@ function SignInPage() {
 		},
 	})
 
-	function onSubmit(values: z.infer<typeof loginSchema>) {}
+	function onSubmit(values: z.infer<typeof loginSchema>) {
+		console.log(values)
+	}
 
 	return (
 		<Card className='w-1/2 p-4 container max-w-6xl mt-24'>
