@@ -42,3 +42,43 @@ export const registerSchema = z.object({
 		.string()
 		.min(6, { message: "Parol kamida 6 ta belgidan iborat bo'lishi kerak" }),
 })
+
+export const fullNameSchema = z.object({
+	fullName: z.string().min(3, {
+		message: "To'liq ism kamida 3 ta belgidan iborat bo'lishi kerak",
+	}),
+})
+
+export const emailSchema = z.object({
+	email: z.string().email({ message: "Email noto'g'ri" }),
+})
+
+export const passwordSchema = z
+	.object({
+		oldPassword: z
+			.string()
+			.min(6, { message: "Parol kamida 6 ta belgidan iborat bo'lishi kerak" }),
+		newPassword: z
+			.string()
+			.min(6, { message: "Parol kamida 6 ta belgidan iborat bo'lishi kerak" }),
+		confirmPassword: z
+			.string()
+			.min(6, { message: "Parol kamida 6 ta belgidan iborat bo'lishi kerak" }),
+	})
+	.refine(data => data.newPassword === data.confirmPassword, {
+		message: 'Parollar mos kelmaydi',
+		path: ['confirmPassword'],
+	})
+
+export const addServiceSchema = z.object({
+	name: z.string().min(3, {
+		message: "Xizmat nomi kamida 3ta belgidan iborat bo'lishi kerak",
+	}),
+	price: z.string(),
+	description: z
+		.string()
+		.min(10, {
+			message: 'Xizmat tavsifi. Majburiy emas',
+		})
+		.optional(),
+})

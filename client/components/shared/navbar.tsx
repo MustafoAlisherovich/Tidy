@@ -4,6 +4,7 @@ import Logo from '@/components/shared/logo'
 import { Button } from '@/components/ui/button'
 import { navLinks } from '@/constants'
 import { cn } from '@/lib/utils'
+import { User } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Mobile from '../../app/(root)/_components/mobile'
@@ -32,6 +33,11 @@ function Navbar() {
 				<div className='flex items-center gap-2'>
 					<div className='flex items-center gap-2 md:border-r md:pr-3'>
 						<Mobile />
+						<Button size='icon' variant='ghost'>
+							<Link href={'/sign-in'}>
+								<User />
+							</Link>
+						</Button>
 					</div>
 					<div className='hidden md:flex'>
 						<Link href={'https://instagram.com'}>

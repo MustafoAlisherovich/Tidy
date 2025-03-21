@@ -28,7 +28,12 @@ export const features = [
 ]
 
 export const servicesHome = [
-	{ _id: 1, name: 'Pol yuvish', price: 50000 },
+	{
+		_id: 1,
+		name: 'Pol yuvish',
+		description: 'Faqat uydagi pollar yuviladi',
+		price: 50000,
+	},
 	{ _id: 2, name: 'Gilam yuvish', price: 50000 },
 	{ _id: 3, name: 'Mebel tozalash', price: 50000 },
 	{ _id: 4, name: 'Chang artish', price: 50000 },
@@ -55,4 +60,11 @@ export const dashboardSidebar = [
 	{ name: "To'lovlar", route: '/dashboard/payments', icon: Banknote },
 	{ name: "Ro'yxat", route: '/dashboard/watch-list', icon: Heart },
 	{ name: 'Sozlamalar', route: '/dashboard/settings', icon: Settings2 },
+]
+
+export const adminSidebar = [
+	{ name: 'Mijozlar', route: '/admin', icon: User },
+	{ name: 'Xizmatlar', route: '/admin/services', icon: Shuffle },
+	{ name: 'Buyurtmalar', route: '/admin/orders', icon: Heart },
+	{ name: "To'lovlar", route: '/admin/payments', icon: Banknote },
 ]

@@ -33,7 +33,7 @@ const EditInformation = () => {
 						<DialogTrigger asChild>
 							<Button
 								size={'icon'}
-								className='absolute right-0 bottom-0 rounded-full border border-primary'
+								className='absolute right-0 bottom-0 rounded-full border border-prima	ry'
 								variant={'secondary'}
 							>
 								<Edit2 />
@@ -52,8 +52,8 @@ const EditInformation = () => {
 					<AccordionItem value='item-1'>
 						<AccordionTrigger>
 							<div className='flex flex-col space-y-0'>
-								<h2 className='font-bold'>Full Name</h2>
-								<p className='text-muted-foreground'>Samar Badriddinov</p>
+								<h2 className='font-bold'>To'liq ism</h2>
+								<p className='text-muted-foreground'>Mustafo Juraboev</p>
 							</div>
 						</AccordionTrigger>
 						<AccordionContent className='border-l border-l-primary pl-4'>
@@ -63,8 +63,10 @@ const EditInformation = () => {
 					<AccordionItem value='item-2'>
 						<AccordionTrigger>
 							<div className='flex flex-col space-y-0'>
-								<h2 className='font-bold'>Emal</h2>
-								<p className='text-muted-foreground'>info@sammi.ac</p>
+								<h2 className='font-bold'>Email manzil</h2>
+								<p className='text-muted-foreground'>
+									info@mustafoalisherovic.uz
+								</p>
 							</div>
 						</AccordionTrigger>
 						<AccordionContent className='border-l border-l-primary pl-4'>
