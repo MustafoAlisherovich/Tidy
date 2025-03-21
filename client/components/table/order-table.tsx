@@ -15,7 +15,7 @@ import {
 } from '../ui/table'
 
 interface Service {
-	id: number
+	_id: number
 	name: string
 	price: number
 }
@@ -25,13 +25,13 @@ function OrderForm() {
 	const [selectedServices, setSelectedServices] = useState<Service[]>([])
 
 	const addService = (service: Service) => {
-		if (!selectedServices.find(s => s.id === service.id)) {
+		if (!selectedServices.find(s => s._id === service._id)) {
 			setSelectedServices([...selectedServices, service])
 		}
 	}
 
 	const removeService = (id: number) => {
-		setSelectedServices(selectedServices.filter(service => service.id !== id))
+		setSelectedServices(selectedServices.filter(service => service._id !== id))
 	}
 
 	const totalPrice = selectedServices.reduce(
@@ -45,7 +45,7 @@ function OrderForm() {
 
 			{/* Xizmatlar ro‘yxati */}
 			<div className='overflow-x-auto'>
-				<Table>
+				<Table className='text-sm'>
 					<TableHeader>
 						<TableRow>
 							<TableHead className='w-1/2'>Xizmat nomi</TableHead>
@@ -55,7 +55,7 @@ function OrderForm() {
 					</TableHeader>
 					<TableBody>
 						{servicesHome.map(service => (
-							<TableRow key={service.id}>
+							<TableRow key={service._id}>
 								<TableCell>{service.name}</TableCell>
 								<TableCell className='text-center'>
 									{service.price.toLocaleString()} so‘m
@@ -90,14 +90,14 @@ function OrderForm() {
 						<TableBody>
 							{selectedServices.length > 0 ? (
 								selectedServices.map(service => (
-									<TableRow key={service.id}>
+									<TableRow key={service._id}>
 										<TableCell>{service.name}</TableCell>
 										<TableCell className='text-center'>
 											{service.price.toLocaleString()} so‘m
 										</TableCell>
 										<TableCell className='text-center'>
 											<Button
-												onClick={() => removeService(service.id)}
+												onClick={() => removeService(service._id)}
 												variant='destructive'
 												size='sm'
 											>

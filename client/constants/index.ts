@@ -1,12 +1,16 @@
 import {
+	Banknote,
 	CheckCircle,
 	DollarSign,
 	Heart,
 	Home,
 	Phone,
+	Settings2,
 	Shield,
+	Shuffle,
 	Sparkles,
 	ThumbsUp,
+	User,
 } from 'lucide-react'
 
 export const navLinks = [
@@ -24,23 +28,31 @@ export const features = [
 ]
 
 export const servicesHome = [
-	{ id: 1, name: 'Pol yuvish', price: 50000 },
-	{ id: 2, name: 'Gilam yuvish', price: 50000 },
-	{ id: 3, name: 'Mebel tozalash', price: 50000 },
-	{ id: 4, name: 'Chang artish', price: 50000 },
-	{ id: 5, name: 'Oyna artish', price: 50000 },
-	{ id: 6, name: "Narsalarni yig'ishtirish", price: 50000 },
-	{ id: 7, name: 'Axlatni olib chiqib ketish', price: 50000 },
-	{ id: 8, name: 'Jundan tozalash', price: 50000 },
-	{ id: 9, name: 'Changyutgich ishlatish', price: 50000 },
-	{ id: 10, name: 'Kiyimlarni taxlash', price: 50000 },
-	{ id: 11, name: 'Qandil yuvish', price: 50000 },
-	{ id: 12, name: 'Rakovina yuvish', price: 50000 },
-	{ id: 13, name: 'Idishlarni yuvish', price: 50000 },
-	{ id: 14, name: 'Gaz plitasini yuvish', price: 50000 },
-	{ id: 15, name: "Stol ustini yig'ishtirish", price: 50000 },
-	{ id: 16, name: 'Vanna va Dush xonasini yuvish', price: 50000 },
-	{ id: 17, name: 'Rakovina yuvish', price: 50000 },
-	{ id: 18, name: 'Tualet tozalash', price: 50000 },
-	{ id: 19, name: 'Hammon kafellarini tozalash', price: 50000 },
+	{ _id: 1, name: 'Pol yuvish', price: 50000 },
+	{ _id: 2, name: 'Gilam yuvish', price: 50000 },
+	{ _id: 3, name: 'Mebel tozalash', price: 50000 },
+	{ _id: 4, name: 'Chang artish', price: 50000 },
+	{ _id: 5, name: 'Oyna artish', price: 50000 },
+	{ _id: 6, name: "Narsalarni yig'ishtirish", price: 50000 },
+	{ _id: 7, name: 'Axlatni olib chiqib ketish', price: 50000 },
+	{ _id: 8, name: 'Jundan tozalash', price: 50000 },
+	{ _id: 9, name: 'Changyutgich ishlatish', price: 50000 },
+	{ _id: 10, name: 'Kiyimlarni taxlash', price: 50000 },
+	{ _id: 11, name: 'Qandil yuvish', price: 50000 },
+	{ _id: 12, name: 'Rakovina yuvish', price: 50000 },
+	{ _id: 13, name: 'Idishlarni yuvish', price: 50000 },
+	{ _id: 14, name: 'Gaz plitasini yuvish', price: 50000 },
+	{ _id: 15, name: "Stol ustini yig'ishtirish", price: 50000 },
+	{ _id: 16, name: 'Vanna va Dush xonasini yuvish', price: 50000 },
+	{ _id: 17, name: 'Rakovina yuvish', price: 50000 },
+	{ _id: 18, name: 'Tualet tozalash', price: 50000 },
+	{ _id: 19, name: 'Hammon kafellarini tozalash', price: 50000 },
+]
+
+export const dashboardSidebar = [
+	{ name: "Shaxsiy ma'lumot", route: '/dashboard', icon: User },
+	{ name: 'Buyurtmalar', route: '/dashboard/orders', icon: Shuffle },
+	{ name: "To'lovlar", route: '/dashboard/payments', icon: Banknote },
+	{ name: "Ro'yxat", route: '/dashboard/watch-list', icon: Heart },
+	{ name: 'Sozlamalar', route: '/dashboard/settings', icon: Settings2 },
 ]

@@ -5,6 +5,13 @@ export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs))
 }
 
+export function formatPrice(price: number) {
+	return new Intl.NumberFormat('uz-UZ', {
+		style: 'currency',
+		currency: 'UZS',
+	}).format(price)
+}
+
 export function calculateTotalPrice(
 	services: { name: string; price: number }[]
 ) {

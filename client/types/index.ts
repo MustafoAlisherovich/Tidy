@@ -11,3 +11,9 @@ export interface ITestimonial {
 	createdAt: string
 	image: { url: string }
 }
+
+export interface IServices {
+	_id: string
+	name: string
+	price: string
+}
