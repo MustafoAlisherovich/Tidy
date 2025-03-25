@@ -1,3 +1,4 @@
+import SessionProvider from '@/components/providers/session.provider'
 import Footer from '@/components/shared/footer'
 import LiveChat from '@/components/shared/live-chat'
 import Navbar from '@/components/shared/navbar'
@@ -27,17 +28,19 @@ export const metadata: Metadata = {
 
 async function RootLayout({ children }: ChildProps) {
 	return (
-		<html lang={'en'} suppressHydrationWarning>
-			<body
-				className={`${inter.variable} ${poppins.variable} overflow-x-hidden`}
-			>
-				<Navbar />
-				<main>{children}</main>
-				<Toaster position='top-center' />
-				<LiveChat />
-				<Footer />
-			</body>
-		</html>
+		<SessionProvider>
+			<html lang={'en'} suppressHydrationWarning>
+				<body
+					className={`${inter.variable} ${poppins.variable} overflow-x-hidden`}
+				>
+					<Navbar />
+					<main>{children}</main>
+					<Toaster position='top-center' />
+					<LiveChat />
+					<Footer />
+				</body>
+			</html>
+		</SessionProvider>
 	)
 }
 

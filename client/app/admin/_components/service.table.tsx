@@ -26,7 +26,7 @@ import {
 	TableHeader,
 	TableRow,
 } from '@/components/ui/table'
-import { useService } from '@/hooks/use-product'
+import { useService } from '@/hooks/use-service'
 import { formatPrice } from '@/lib/utils'
 import { IServices } from '@/types'
 import { CircleHelp, Edit, Trash2 } from 'lucide-react'

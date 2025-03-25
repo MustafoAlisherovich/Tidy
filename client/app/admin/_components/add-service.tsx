@@ -19,7 +19,7 @@ import {
 	SheetTitle,
 } from '@/components/ui/sheet'
 import { Textarea } from '@/components/ui/textarea'
-import { useService } from '@/hooks/use-product'
+import { useService } from '@/hooks/use-service'
 import { formatPrice } from '@/lib/utils'
 import { addServiceSchema } from '@/lib/validation'
 import { zodResolver } from '@hookform/resolvers/zod'

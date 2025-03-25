@@ -25,8 +25,8 @@ class UserController {
 	// GET user/profile/:id
 	async getProfile(req, res, next) {
 		try {
-			const profile = await userModel.findById(req.params.id)
-			return res.json(profile)
+			const user = await userModel.findById(req.params.id).select('-password')
+			return res.json({ user })
 		} catch (error) {
 			next(error)
 		}
@@ -107,7 +107,7 @@ class UserController {
 	async updatePassword(req, res, next) {
 		try {
 			const { oldPassword, newPassword } = req.body
-			const userId = '67420187ce7f12bf6ec22428'
+			const userId = '67e13b273de3c6efcbf02fb0'
 			const user = await userModel.findById(userId)
 
 			const isPasswordMatch = await bcrypt.compare(oldPassword, user.password)
@@ -125,7 +125,7 @@ class UserController {
 	async deleteFavorite(req, res, next) {
 		try {
 			const { id } = req.params
-			const userId = '67420187ce7f12bf6ec22428'
+			const userId = '67e13b273de3c6efcbf02fb0'
 			const user = await userModel.findById(userId)
 			user.favorites.pull(id)
 			await user.save()

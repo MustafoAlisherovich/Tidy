@@ -18,3 +18,23 @@ export interface IServices {
 	price: string | number
 	description?: string
 }
+
+export interface ReturnActionType {
+	user: IUser
+	failure: string
+}
+
+export interface IUser {
+	email: string
+	fullName: string
+	password: string
+	_id: string
+	role: string
+	orderCount: number
+	totalPrice: number
+	avatar: string
+	avatarKey: string
+	isDeleted: boolean
+	deletedAt: Date
+	favorites: IServices[]
+}
