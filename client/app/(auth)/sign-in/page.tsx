@@ -99,13 +99,13 @@ function SignInPage() {
 						)}
 					/>
 					<Button type='submit' disabled={isLoading}>
-						Submit {isLoading && <Loader className='animate-spin' />}
+						Yuborish {isLoading && <Loader className='animate-spin' />}
 					</Button>
 				</form>
 			</Form>
 			<div className='mt-4'>
 				<div className='text-sm text-muted-foreground'>
-					Accountingiz yo'qmi{' '}
+					Hisob raqamingiz yo'qmi{' '}
 					<Button asChild variant={'link'} className='p-0'>
 						<Link href='/sign-up'>Ro'yxatdan O'tish</Link>
 					</Button>

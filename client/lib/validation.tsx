@@ -33,6 +33,19 @@ export const loginSchema = z.object({
 	password: z.string().min(6),
 })
 
+export const verifyOtpSchema = z.object({
+	otp: z
+		.string()
+		.length(6, { message: "OTP kamida 6ta belgidan iborat bo'lishi kerak" }),
+	email: z.string().email({ message: "Email noto'g'ri" }),
+})
+
+export const otpSchema = z.object({
+	otp: z
+		.string()
+		.length(6, { message: "OTP kamida 6ta belgidan bo'lishi kerak" }),
+})
+
 export const registerSchema = z.object({
 	fullName: z.string().min(3, {
 		message: "To'liq ismingiz kamida 3 ta belgidan iborat bo'lishi kerak",
