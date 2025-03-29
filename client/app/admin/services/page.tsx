@@ -1,9 +1,12 @@
+import { getServices } from '@/actions/admin.action'
 import { Separator } from '@/components/ui/separator'
-import { servicesHome } from '@/constants'
 import AddService from '../_components/add-service'
 import ServiceTable from '../_components/service.table'
 
-const Page = () => {
+const Page = async () => {
+	const res = await getServices()
+	const services = res?.data?.services
+
 	return (
 		<>
 			<div className='flex justify-between items-center w-full'>
@@ -12,8 +15,10 @@ const Page = () => {
 			</div>
 
 			<Separator className='my-3' />
-
-			<ServiceTable service={servicesHome} />
+			{services && services.length === 0 && (
+				<p className='text-muted-foreground'>Xizmatlar topilmadi</p>
+			)}
+			<ServiceTable services={services && services} />
 		</>
 	)
 }

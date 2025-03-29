@@ -1,4 +1,5 @@
 const adminCotroller = require('../controllers/admin.cotroller')
+const adminMiddleware = require('../middlewares/admin.middleware')
 
 const router = require('express').Router()
 
@@ -7,7 +8,7 @@ router.get('/customers', adminCotroller.getCustomers)
 router.get('/orders', adminCotroller.getOrders)
 router.get('/transactions', adminCotroller.getTransactions)
 
-router.post('/create-service', adminCotroller.createService)
+router.post('/create-service', adminMiddleware, adminCotroller.createService)
 
 router.put('/update-service/:id', adminCotroller.updateService)
 router.put('/update-order/:id', adminCotroller.updateOrder)

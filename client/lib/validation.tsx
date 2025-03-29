@@ -88,10 +88,5 @@ export const addServiceSchema = z.object({
 		message: "Xizmat nomi kamida 3ta belgidan iborat bo'lishi kerak",
 	}),
 	price: z.string(),
-	description: z
-		.string()
-		.min(10, {
-			message: 'Xizmat tavsifi. Majburiy emas',
-		})
-		.optional(),
+	description: z.string().min(10).optional(),
 })

@@ -23,6 +23,7 @@ export interface ReturnActionType {
 	user: IUser
 	failure: string
 	status: number
+	services: IServices[]
 }
 
 export interface IUser {

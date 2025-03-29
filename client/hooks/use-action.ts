@@ -7,7 +7,7 @@ const UseAction = () => {
 	const [isLoading, setIsLoading] = useState(false)
 
 	function onError(message: string) {
-		setIsLoading(true)
+		setIsLoading(false)
 		toast.error(message)
 	}
 

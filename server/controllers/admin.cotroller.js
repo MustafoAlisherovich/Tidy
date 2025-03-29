@@ -18,13 +18,8 @@ class AdminController {
 	// GET admin Services
 	async getServices(req, res, next) {
 		try {
-			const userId = this.userId
-			const user = await userModel.findById(userId)
-			if (!user) return res.json({ failure: 'User not found' })
-			if (user.role !== 'admin')
-				return res.json({ failure: 'User is not admin' })
 			const services = await serviceModel.find()
-			return res.json({ success: 'Get services successfully', services })
+			return res.json({ services })
 		} catch (error) {
 			next(error)
 		}
@@ -76,18 +71,16 @@ class AdminController {
 	}
 	// POST admin create-service
 	async createService(req, res, next) {
-		const data = req.body
-		const userId = this.userId
-		const user = await userModel.findById(userId)
-		if (!user) return res.json({ failure: 'User not found' })
-		if (user.role !== 'admin') return res.json({ failure: 'User is not admin' })
-		const newService = await serviceModel.create({
-			...data,
-			price: parseInt(data.price),
-		})
-		if (!newService)
-			return res.json({ failure: 'Failed while creating service' })
-		return res.json({ success: 'Service created successfully' })
+		try {
+			const newService = await serviceModel.create(req.body)
+			if (!newService) {
+				return res.json({ failure: 'Failed while creating product' })
+			}
+			return res.json({ status: 201 })
+		} catch (error) {
+			console.log(error)
+			next(error)
+		}
 	}
 	// PUT admin update-service
 	async updateService(req, res, next) {

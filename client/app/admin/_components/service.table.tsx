@@ -34,10 +34,10 @@ import { FC } from 'react'
 import NoSSR from 'react-no-ssr'
 
 interface Props {
-	service: IServices[]
+	services: IServices[]
 }
 
-const ServiceTable: FC<Props> = ({ service }) => {
+const ServiceTable: FC<Props> = ({ services }) => {
 	const { setOpen } = useService()
 
 	const onEdit = () => {
@@ -45,7 +45,7 @@ const ServiceTable: FC<Props> = ({ service }) => {
 	}
 	return (
 		<Table>
-			<TableCaption>Xizmat qo'shish</TableCaption>
+			<TableCaption>Xizmatlar</TableCaption>
 			<TableHeader>
 				<TableRow>
 					<TableHead>Xizmat</TableHead>
@@ -55,7 +55,7 @@ const ServiceTable: FC<Props> = ({ service }) => {
 				</TableRow>
 			</TableHeader>
 			<TableBody>
-				{service.map(service => (
+				{services.map(service => (
 					<TableRow key={service._id}>
 						<TableCell className='flex items-center gap-2'>
 							{service.name}

@@ -1,5 +1,6 @@
 'use client'
 
+import { createService } from '@/actions/admin.action'
 import { Button } from '@/components/ui/button'
 import {
 	Form,
@@ -19,15 +20,18 @@ import {
 	SheetTitle,
 } from '@/components/ui/sheet'
 import { Textarea } from '@/components/ui/textarea'
+import UseAction from '@/hooks/use-action'
 import { useService } from '@/hooks/use-service'
 import { formatPrice } from '@/lib/utils'
 import { addServiceSchema } from '@/lib/validation'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { PlusCircle } from 'lucide-react'
+import { Loader, PlusCircle } from 'lucide-react'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import { z } from 'zod'
 
 const AddService = () => {
+	const { isLoading, onError, setIsLoading } = UseAction()
 	const { open, setOpen } = useService()
 
 	const form = useForm<z.infer<typeof addServiceSchema>>({
@@ -35,12 +39,24 @@ const AddService = () => {
 		defaultValues: {
 			name: '',
 			price: '',
-			description: '',
 		},
 	})
 
 	async function onSubmit(values: z.infer<typeof addServiceSchema>) {
-		console.log(values)
+		setIsLoading(true)
+		const res = await createService(values)
+		if (res?.serverError || res?.validationErrors || !res?.data) {
+			return onError("Nimadir noto'g'ri ketdi!")
+		}
+		if (res.data.failure) {
+			return onError(res.data.failure)
+		}
+		if (res.data.status === 201) {
+			toast.success("Xizmat muvaffaqiyatli qo'shildi")
+			form.reset()
+			setIsLoading(false)
+			setOpen(false)
+		}
 	}
 
 	function onOpen() {
@@ -76,6 +92,7 @@ const AddService = () => {
 												placeholder='Kir yuvish'
 												className='bg-secondary'
 												{...field}
+												disabled={isLoading}
 											/>
 										</FormControl>
 										<FormMessage className='text-xs text-red-500' />
@@ -90,9 +107,10 @@ const AddService = () => {
 										<Label className='text-xs'>Tavsif</Label>
 										<FormControl>
 											<Textarea
-												placeholder='Barcha kiyimlar Avtomat kirmashinasida yuviladi'
+												placeholder='Barcha kiyimlar Avtomat kirmashinasida yuviladi (Majburiy emas)'
 												className='bg-secondary'
 												{...field}
+												disabled={isLoading}
 											/>
 										</FormControl>
 										<FormMessage className='text-xs text-red-500' />
@@ -115,14 +133,15 @@ const AddService = () => {
 												type='number'
 												className='bg-secondary'
 												{...field}
+												disabled={isLoading}
 											/>
 										</FormControl>
 										<FormMessage className='text-xs text-red-500' />
 									</FormItem>
 								)}
 							/>
-							<Button type='submit' className='w-full'>
-								Qo'shish
+							<Button type='submit' className='w-full' disabled={isLoading}>
+								Qo'shish {isLoading && <Loader className='animate-spin' />}
 							</Button>
 						</form>
 					</Form>
