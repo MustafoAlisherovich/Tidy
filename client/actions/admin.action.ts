@@ -4,7 +4,7 @@ import { axiosClient } from '@/http/axios'
 import { authOptions } from '@/lib/auth-options'
 import { generateToken } from '@/lib/generate-toke'
 import { actionClient } from '@/lib/safe-action'
-import { addServiceSchema } from '@/lib/validation'
+import { addServiceSchema, idSchema } from '@/lib/validation'
 import { ReturnActionType } from '@/types'
 import { getServerSession } from 'next-auth'
 import { revalidatePath } from 'next/cache'
@@ -32,5 +32,20 @@ export const createService = actionClient
 			{ headers: { Authorization: `Bearer ${token}` } }
 		)
 		revalidatePath('/admin/services')
+		return JSON.parse(JSON.stringify(data))
+	})
+
+export const deleteService = actionClient
+	.schema(idSchema)
+	.action<ReturnActionType>(async ({ parsedInput }) => {
+		const session = await getServerSession(authOptions)
+		const token = await generateToken(session?.currentUser?._id)
+		const { data } = await axiosClient.delete(
+			`/api/admin/delete-service/${parsedInput.id}`,
+			{
+				headers: { Authorization: `Bearer ${token}` },
+			}
+		)
+		revalidatePath('/admin/service')
 		return JSON.parse(JSON.stringify(data))
 	})

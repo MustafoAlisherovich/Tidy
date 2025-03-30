@@ -10,7 +10,6 @@ router.get('/transactions', adminCotroller.getTransactions)
 
 router.post('/create-service', adminMiddleware, adminCotroller.createService)
 
-router.put('/update-service/:id', adminCotroller.updateService)
 router.put('/update-order/:id', adminCotroller.updateOrder)
 
 router.delete('/delete-service/:id', adminCotroller.deleteService)

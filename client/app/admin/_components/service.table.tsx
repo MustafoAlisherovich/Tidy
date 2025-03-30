@@ -1,5 +1,6 @@
 'use client'
 
+import { deleteService } from '@/actions/admin.action'
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -26,23 +27,54 @@ import {
 	TableHeader,
 	TableRow,
 } from '@/components/ui/table'
+import UseAction from '@/hooks/use-action'
 import { useService } from '@/hooks/use-service'
 import { formatPrice } from '@/lib/utils'
 import { IServices } from '@/types'
-import { CircleHelp, Edit, Trash2 } from 'lucide-react'
+import { CircleHelp, Trash2 } from 'lucide-react'
 import { FC } from 'react'
 import NoSSR from 'react-no-ssr'
+import { toast } from 'sonner'
 
 interface Props {
-	services: IServices[]
+	service: IServices[]
 }
 
-const ServiceTable: FC<Props> = ({ services }) => {
-	const { setOpen } = useService()
+const ServiceTable: FC<Props> = ({ service }) => {
+	const { setOpen, setService } = useService()
+	const { isLoading, onError, setIsLoading } = UseAction()
 
 	const onEdit = () => {
 		setOpen(true)
+		setService(service)
 	}
+
+	async function onDelete(id: string) {
+		setIsLoading(true)
+
+		const res = await deleteService({ id })
+
+		if (res?.serverError || res?.validationErrors || !res?.data) {
+			setIsLoading(false)
+			return onError('Nimadir xato ketdi!')
+		}
+
+		if (res.data.failure) {
+			setIsLoading(false)
+			return onError(res.data.failure)
+		}
+
+		if (res.data.status === 200) {
+			// Zustand holatidan o‘chirish
+			useService.setState(prev => ({
+				service: prev.service?.filter(s => s._id !== id) || [],
+			}))
+
+			toast.success('Xizmat muvaffaqiyatli o‘chirildi')
+			setIsLoading(false)
+		}
+	}
+
 	return (
 		<Table>
 			<TableCaption>Xizmatlar</TableCaption>
@@ -50,12 +82,11 @@ const ServiceTable: FC<Props> = ({ services }) => {
 				<TableRow>
 					<TableHead>Xizmat</TableHead>
 					<TableHead>Narx</TableHead>
-					<TableHead>O'zgartirish</TableHead>
 					<TableHead>O'chirish</TableHead>
 				</TableRow>
 			</TableHeader>
 			<TableBody>
-				{services.map(service => (
+				{service.map(service => (
 					<TableRow key={service._id}>
 						<TableCell className='flex items-center gap-2'>
 							{service.name}
@@ -77,11 +108,6 @@ const ServiceTable: FC<Props> = ({ services }) => {
 							<NoSSR>{formatPrice(+service.price!)}</NoSSR>
 						</TableCell>
 						<TableCell>
-							<Button variant='ghost' onClick={onEdit}>
-								<Edit />
-							</Button>
-						</TableCell>
-						<TableCell>
 							<AlertDialog>
 								<AlertDialogTrigger asChild>
 									<Button size='icon' variant='ghost'>
@@ -98,8 +124,15 @@ const ServiceTable: FC<Props> = ({ services }) => {
 										</AlertDialogDescription>
 									</AlertDialogHeader>
 									<AlertDialogFooter>
-										<AlertDialogCancel>Ortga</AlertDialogCancel>
-										<AlertDialogAction>Davom etish</AlertDialogAction>
+										<AlertDialogCancel disabled={isLoading}>
+											Ortga
+										</AlertDialogCancel>
+										<AlertDialogAction
+											disabled={isLoading}
+											onClick={() => onDelete(service._id)}
+										>
+											Davom etish
+										</AlertDialogAction>
 									</AlertDialogFooter>
 								</AlertDialogContent>
 							</AlertDialog>

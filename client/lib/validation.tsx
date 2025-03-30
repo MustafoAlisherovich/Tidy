@@ -90,3 +90,7 @@ export const addServiceSchema = z.object({
 	price: z.string(),
 	description: z.string().min(10).optional(),
 })
+
+export const idSchema = z.object({
+	id: z.string(),
+})

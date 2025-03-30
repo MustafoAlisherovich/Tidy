@@ -4,7 +4,7 @@ import AddService from '../_components/add-service'
 import ServiceTable from '../_components/service.table'
 
 const Page = async () => {
-	const res = await getServices()
+	const res = await getServices({})
 	const services = res?.data?.services
 
 	return (
@@ -18,7 +18,7 @@ const Page = async () => {
 			{services && services.length === 0 && (
 				<p className='text-muted-foreground'>Xizmatlar topilmadi</p>
 			)}
-			<ServiceTable services={services && services} />
+			<ServiceTable service={services && services} />
 		</>
 	)
 }

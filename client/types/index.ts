@@ -13,9 +13,9 @@ export interface ITestimonial {
 }
 
 export interface IServices {
-	_id: number | string
+	_id: string
 	name: string
-	price: string | number
+	price: string
 	description?: string
 }
 
