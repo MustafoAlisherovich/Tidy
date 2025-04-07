@@ -1,9 +1,9 @@
-import { IServices } from '@/types'
+import { IService } from '@/types'
 import { create } from 'zustand'
 
 type Store = {
-	service: IServices[] | null
-	setService: (service: IServices[] | null) => void
+	service: IService[] | null
+	setService: (service: IService[] | null) => void
 	open: boolean
 	setOpen: (open: boolean) => void
 }

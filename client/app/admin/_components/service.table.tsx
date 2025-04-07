@@ -30,14 +30,14 @@ import {
 import UseAction from '@/hooks/use-action'
 import { useService } from '@/hooks/use-service'
 import { formatPrice } from '@/lib/utils'
-import { IServices } from '@/types'
+import { IService } from '@/types'
 import { CircleHelp, Trash2 } from 'lucide-react'
 import { FC } from 'react'
 import NoSSR from 'react-no-ssr'
 import { toast } from 'sonner'
 
 interface Props {
-	service: IServices[]
+	service: IService[]
 }
 
 const ServiceTable: FC<Props> = ({ service }) => {

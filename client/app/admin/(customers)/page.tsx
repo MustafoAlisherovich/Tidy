@@ -1,3 +1,5 @@
+import { getCustomers } from '@/actions/admin.action'
+import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import {
 	Table,
@@ -8,8 +10,11 @@ import {
 	TableHeader,
 	TableRow,
 } from '@/components/ui/table'
+import { formatPrice } from '@/lib/utils'
 
-const Page = () => {
+const Page = async () => {
+	const res = await getCustomers({})
+	const customers = res?.data?.customers
 	return (
 		<>
 			<div className='flex justify-between items-center w-full'>
@@ -31,14 +36,36 @@ const Page = () => {
 					</TableRow>
 				</TableHeader>
 				<TableBody>
-					<TableRow>
-						<TableCell>1</TableCell>
-						<TableCell>info@mustafoalisherovich.uz</TableCell>
-						<TableCell>Mustafo Juraboev</TableCell>
-						<TableCell>12</TableCell>
-						<TableCell>Faol</TableCell>
-						<TableCell className='text-right'>$1200</TableCell>
-					</TableRow>
+					{customers && customers.length === 0 && (
+						<TableRow>
+							<TableCell className='text-center' colSpan={6}>
+								Mijozlar topilmadi
+							</TableCell>
+						</TableRow>
+					)}
+					{customers &&
+						customers.map((customer, index) => (
+							<TableRow key={customer._id}>
+								<TableCell>{index + 1}</TableCell>
+								<TableCell>{customer.email}</TableCell>
+								<TableCell>{customer.fullName}</TableCell>
+								<TableCell>
+									<Badge>{customer.orderCount}</Badge>
+								</TableCell>
+								<TableCell>
+									<Badge
+										variant={customer.isDeleted ? 'destructive' : 'secondary'}
+									>
+										{customer.isDeleted ? 'Deleted' : 'Faol'}
+									</Badge>
+								</TableCell>
+								<TableCell className='text-right'>
+									<Badge variant={'outline'}>
+										{formatPrice(customer.totalPrice)}
+									</Badge>
+								</TableCell>
+							</TableRow>
+						))}
 				</TableBody>
 			</Table>
 		</>

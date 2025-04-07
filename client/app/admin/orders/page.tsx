@@ -1,3 +1,5 @@
+import { getOrders } from '@/actions/admin.action'
+import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import {
 	Table,
@@ -8,9 +10,14 @@ import {
 	TableHeader,
 	TableRow,
 } from '@/components/ui/table'
+import { formatPrice } from '@/lib/utils'
+import { format } from 'date-fns'
 import OrderActions from '../_components/order-actions'
 
-const Page = () => {
+const Page = async () => {
+	const res = await getOrders({})
+	const orders = res?.data?.orders
+
 	return (
 		<>
 			<div className='flex justify-between items-center w-full'>
@@ -32,16 +39,25 @@ const Page = () => {
 					</TableRow>
 				</TableHeader>
 				<TableBody>
-					<TableRow>
-						<TableCell>Service 1</TableCell>
-						<TableCell>info@mustafoalisherovich.uz</TableCell>
-						<TableCell>100$</TableCell>
-						<TableCell>Kutilmoqda</TableCell>
-						<TableCell>11/11/2025</TableCell>
-						<TableCell className='text-right'>
-							<OrderActions />
-						</TableCell>
-					</TableRow>
+					{orders &&
+						orders.map(order => (
+							<TableRow key={order._id}>
+								<TableCell>{order.service.name}</TableCell>
+								<TableCell>{order.user.email}</TableCell>
+								<TableCell>
+									<Badge variant='secondary'>{formatPrice(order.price)}</Badge>
+								</TableCell>
+								<TableCell>
+									<Badge>{order.status}</Badge>
+								</TableCell>
+								<TableCell>
+									{format(new Date(order.createdAt), 'dd MMM yyyy')}
+								</TableCell>
+								<TableCell className='text-right'>
+									<OrderActions />
+								</TableCell>
+							</TableRow>
+						))}
 				</TableBody>
 			</Table>
 		</>

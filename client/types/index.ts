@@ -12,7 +12,7 @@ export interface ITestimonial {
 	image: { url: string }
 }
 
-export interface IServices {
+export interface IService {
 	_id: string
 	name: string
 	price: string
@@ -23,7 +23,9 @@ export interface ReturnActionType {
 	user: IUser
 	failure: string
 	status: number
-	services: IServices[]
+	services: IService[]
+	customers: IUser[]
+	orders: IOrder[]
 }
 
 export interface IUser {
@@ -38,5 +40,15 @@ export interface IUser {
 	avatarKey: string
 	isDeleted: boolean
 	deletedAt: Date
-	favorites: IServices[]
+	favorites: IService[]
+}
+
+export interface IOrder {
+	_id: string
+	user: IUser
+	service: IService
+	createdAt: Date
+	price: number
+	status: string
+	updatedAt: Date
 }

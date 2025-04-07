@@ -26,13 +26,34 @@ class AdminController {
 	// GET admin customers
 	async getCustomers(req, res, next) {
 		try {
-			const userId = this.userId
-			const user = await userModel.findById(userId)
-			if (!user) return res.json({ failure: 'User not found' })
-			if (user.role !== 'admin')
-				return res.json({ failure: 'User is not admin' })
-			const customers = await userModel.find({ role: 'user' })
-			return res.json({ success: 'Get customers successfully', customers })
+			const customers = await userModel.aggregate([
+				{ $match: { role: 'user' } },
+				{
+					$lookup: {
+						from: 'orders',
+						localField: '_id',
+						foreignField: 'user',
+						as: 'orders',
+					},
+				},
+				{ $addFields: { orderCount: { $size: '$orders' } } },
+				{ $unwind: { path: '$orders', preserveNullAndEmptyArrays: true } },
+				{
+					$group: {
+						_id: '$_id',
+						email: { $first: '$email' },
+						fullName: { $first: '$fullName' },
+						role: { $first: '$role' },
+						createdAt: { $first: '$createdAt' },
+						updatedAt: { $first: '$updatedAt' },
+						totalPrice: { $sum: '$order.price' },
+						totalSquareMeters: { $sum: '$orders.services.squareMeters' },
+						orderCount: { $first: '$orderCount' },
+						isDeleted: { $first: '$isDeleted' },
+					},
+				},
+			])
+			return res.json({ customers })
 		} catch (error) {
 			next(error)
 		}
@@ -40,17 +61,46 @@ class AdminController {
 	// GET admin orders
 	async getOrders(req, res, next) {
 		try {
-			const userId = this.userId
-			const user = await userModel.findById(userId)
-			if (!user) return res.json({ failure: 'User not found' })
-			if (user.role !== 'admin')
-				return res.json({ failure: 'User is not admin' })
-			const orders = await orderModel.find()
-			return res.json({ success: 'Get orders successfully', orders })
+			const orders = await orderModel.aggregate([
+				{
+					$lookup: {
+						from: 'users',
+						localField: 'user',
+						foreignField: '_id',
+						as: 'user',
+					},
+				},
+				{ $unwind: '$user' },
+
+				{
+					$lookup: {
+						from: 'services',
+						localField: 'service',
+						foreignField: '_id',
+						as: 'service',
+					},
+				},
+				{ $unwind: '$service' },
+
+				{
+					$project: {
+						'user.email': 1,
+						'user.fullName': 1,
+						'service.name': 1,
+						price: 1,
+						createdAt: 1,
+						status: 1,
+					},
+				},
+			])
+
+			return res.json({ success: true, orders })
 		} catch (error) {
+			console.log('❌ getOrders error:', error)
 			next(error)
 		}
 	}
+
 	// GET admin transactions
 	async getTransactions(req, res, next) {
 		try {

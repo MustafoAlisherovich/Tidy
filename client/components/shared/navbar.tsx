@@ -12,7 +12,6 @@ import UserBox from './user-box'
 
 async function Navbar() {
 	const session = await getServerSession(authOptions)
-	console.log(session)
 
 	return (
 		<div className='inset-0 h-20  transition-all'>
