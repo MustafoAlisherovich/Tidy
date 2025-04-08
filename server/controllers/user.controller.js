@@ -97,7 +97,6 @@ class UserController {
 			if (!user) return res.json({ failure: 'User not found' })
 			await userModel.findByIdAndUpdate(userId, req.body)
 			return res.json({ status: 200 })
-			return res.json(user)
 		} catch (error) {
 			next(error)
 		}

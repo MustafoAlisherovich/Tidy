@@ -1,12 +1,13 @@
 'use client'
 
+import { updateUser } from '@/actions/user.action'
 import {
 	Accordion,
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
 } from '@/components/ui/accordion'
-import { Avatar, AvatarFallback } from '@/components/ui/avatar'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import {
 	Dialog,
@@ -15,10 +16,14 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog'
+import { Skeleton } from '@/components/ui/skeleton'
+import UseAction from '@/hooks/use-action'
 import { UploadDropzone } from '@/lib/uploadthing'
 import { IUser } from '@/types'
-import { Edit2 } from 'lucide-react'
-import { FC } from 'react'
+import { Edit2, Loader } from 'lucide-react'
+import { useSession } from 'next-auth/react'
+import { FC, useState } from 'react'
+import { toast } from 'sonner'
 import EmailForm from './email.form'
 import FullNameForm from './full-name.form'
 
@@ -27,18 +32,43 @@ interface Props {
 }
 
 const EditInformation: FC<Props> = ({ user }) => {
-	const onUpdateAvatar = async (avatar: string, avatarKey: string) => {}
+	const [onOpen, setOnOpen] = useState(false)
+	const { update } = useSession()
+	const { isLoading, onError, setIsLoading } = UseAction()
+	const onUpdateAvatar = async (avatar: string, avatarKey: string) => {
+		setIsLoading(true)
+		const res = await updateUser({ avatar, avatarKey })
+
+		if (res?.serverError || res?.validationErrors || !res?.data) {
+			return onError("Nimadir noto'g'ri ketdi!")
+		}
+		if (res.data.failure) {
+			return onError(res.data.failure)
+		}
+		if (res.data.status === 200) {
+			toast.success("Muvaffaqiyatli o'zgartirildi")
+			update()
+			setOnOpen(false)
+			setIsLoading(false)
+		}
+	}
 
 	return (
 		<>
 			<div className='w-full h-52 bg-secondary flex justify-center items-center'>
 				<div className='relative'>
+					{isLoading && (
+						<Skeleton className='absolute inset-0 bg-secondary z-50 flex items-center justify-center'>
+							<Loader className='animate-spin' />
+						</Skeleton>
+					)}
 					<Avatar className='size-32'>
+						<AvatarImage src={user.avatar} alt={user.fullName} />
 						<AvatarFallback className='bg-primary text-white text-6xl'>
-							CN
+							{user.fullName.charAt(0).toUpperCase()}
 						</AvatarFallback>
 					</Avatar>
-					<Dialog>
+					<Dialog open={onOpen} onOpenChange={setOnOpen}>
 						<DialogTrigger asChild>
 							<Button
 								size={'icon'}

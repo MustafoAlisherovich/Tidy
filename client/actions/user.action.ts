@@ -7,6 +7,7 @@ import { actionClient } from '@/lib/safe-action'
 import { idSchema, updateUserSchema } from '@/lib/validation'
 import { ReturnActionType } from '@/types'
 import { getServerSession } from 'next-auth'
+import { revalidatePath } from 'next/cache'
 
 export const getServices = actionClient.action<ReturnActionType>(async () => {
 	const { data } = await axiosClient.get('/api/user/services', {})
@@ -53,5 +54,6 @@ export const updateUser = actionClient
 			parsedInput,
 			{ headers: { Authorization: `Bearer ${token}` } }
 		)
+		revalidatePath('/dashboard')
 		return JSON.parse(JSON.stringify(data))
 	})
