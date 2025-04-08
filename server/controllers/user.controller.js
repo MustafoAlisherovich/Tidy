@@ -9,15 +9,7 @@ class UserController {
 	async getServices(req, res, next) {
 		try {
 			const services = await serviceModel.find()
-			return res.json(services)
-		} catch (error) {
-			next(error)
-		}
-	}
-	// GET user/service
-	async getService(req, res, next) {
-		try {
-			const service = await serviceModel.findById(req.params.id)
+			return res.json({ services })
 		} catch (error) {
 			next(error)
 		}
@@ -82,7 +74,13 @@ class UserController {
 	async addFavorite(req, res, next) {
 		try {
 			const { productId } = req.body
-			const userId = '67e13b273de3c6efcbf02fb0'
+			const userId = req.user._id
+			const isExist = await userModel.findOne({
+				_id: userId,
+				favorites: productId,
+			})
+			if (isExist)
+				return res.json({ failure: "Xizmat allaqachon qo'shib bo'lingan" })
 			const user = await userModel.findById(userId)
 			user.favorites.push(productId)
 			await user.save()
@@ -94,10 +92,11 @@ class UserController {
 
 	async updateProfile(req, res, next) {
 		try {
-			const userId = '67e13b273de3c6efcbf02fb0'
+			const userId = req.user._id
 			const user = await userModel.findById(userId)
-			user.set(req.body)
-			await user.save()
+			if (!user) return res.json({ failure: 'User not found' })
+			await userModel.findByIdAndUpdate(userId, req.body)
+			return res.json({ status: 200 })
 			return res.json(user)
 		} catch (error) {
 			next(error)
@@ -129,7 +128,7 @@ class UserController {
 			const user = await userModel.findById(userId)
 			user.favorites.pull(id)
 			await user.save()
-			return res.json({ success: 'Product removed from favorites' })
+			return res.json({ success: 'Service removed from favorites' })
 		} catch (error) {
 			next(error)
 		}

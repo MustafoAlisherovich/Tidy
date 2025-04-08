@@ -26,6 +26,7 @@ export interface ReturnActionType {
 	services: IService[]
 	customers: IUser[]
 	orders: IOrder[]
+	transactions: ITransactions[]
 }
 
 export interface IUser {
@@ -51,4 +52,18 @@ export interface IOrder {
 	price: number
 	status: string
 	updatedAt: Date
+}
+
+export interface ITransactions {
+	_id: string
+	id: string
+	user: IUser
+	service: IService
+	state: number
+	amount: number
+	create_time: number
+	perform_time: number
+	cancel_time: number
+	reason: number
+	provider: string
 }

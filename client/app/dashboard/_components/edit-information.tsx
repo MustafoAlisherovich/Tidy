@@ -15,11 +15,20 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog'
+import { UploadDropzone } from '@/lib/uploadthing'
+import { IUser } from '@/types'
 import { Edit2 } from 'lucide-react'
+import { FC } from 'react'
 import EmailForm from './email.form'
 import FullNameForm from './full-name.form'
 
-const EditInformation = () => {
+interface Props {
+	user: IUser
+}
+
+const EditInformation: FC<Props> = ({ user }) => {
+	const onUpdateAvatar = async (avatar: string, avatarKey: string) => {}
+
 	return (
 		<>
 			<div className='w-full h-52 bg-secondary flex justify-center items-center'>
@@ -43,6 +52,14 @@ const EditInformation = () => {
 							<DialogHeader>
 								<DialogTitle />
 							</DialogHeader>
+							<UploadDropzone
+								endpoint={'imageUploader'}
+								config={{ appendOnPaste: true, mode: 'auto' }}
+								appearance={{ container: { height: 200, padding: 10 } }}
+								onClientUploadComplete={res =>
+									onUpdateAvatar(res[0].url, res[0].key)
+								}
+							/>
 						</DialogContent>
 					</Dialog>
 				</div>

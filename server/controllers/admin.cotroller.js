@@ -96,7 +96,6 @@ class AdminController {
 
 			return res.json({ success: true, orders })
 		} catch (error) {
-			console.log('❌ getOrders error:', error)
 			next(error)
 		}
 	}
@@ -104,16 +103,41 @@ class AdminController {
 	// GET admin transactions
 	async getTransactions(req, res, next) {
 		try {
-			const userId = this.userId
-			const user = await userModel.findById(userId)
-			if (!user) return res.json({ failure: 'User not found' })
-			if (user.role !== 'admin')
-				return res.json({ failure: 'User is not admin' })
-			const transactions = await transactionModel.find()
-			return res.json({
-				success: 'Get transactions successfully',
-				transactions,
-			})
+			const transactions = await transactionModel.aggregate([
+				{
+					$lookup: {
+						from: 'users',
+						localField: 'user',
+						foreignField: '_id',
+						as: 'user',
+					},
+				},
+				{ $unwind: '$user' },
+
+				{
+					$lookup: {
+						from: 'services',
+						localField: 'service',
+						foreignField: '_id',
+						as: 'service',
+					},
+				},
+				{ $unwind: '$service' },
+
+				{
+					$project: {
+						'user.email': 1,
+						'user.fullName': 1,
+						'service.name': 1,
+						'service.price': 1,
+						amount: 1,
+						createdAt: 1,
+						state: 1,
+						provider: 1,
+					},
+				},
+			])
+			return res.json({ transactions })
 		} catch (error) {
 			next(error)
 		}

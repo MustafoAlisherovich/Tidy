@@ -39,6 +39,13 @@ const Page = async () => {
 					</TableRow>
 				</TableHeader>
 				<TableBody>
+					{orders && orders.length === 0 && (
+						<TableRow>
+							<TableCell className='text-center' colSpan={6}>
+								Mijozlar topilmadi
+							</TableCell>
+						</TableRow>
+					)}
 					{orders &&
 						orders.map(order => (
 							<TableRow key={order._id}>

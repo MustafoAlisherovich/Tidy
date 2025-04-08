@@ -42,6 +42,18 @@ export const getOrders = actionClient.action<ReturnActionType>(
 	}
 )
 
+export const getTransactions = actionClient.action<ReturnActionType>(
+	async ({ parsedInput }) => {
+		const session = await getServerSession(authOptions)
+		const token = await generateToken(session?.currentUser?._id)
+		const { data } = await axiosClient.get('/api/admin/transactions', {
+			headers: { Authorization: `Bearer ${token}` },
+			params: parsedInput,
+		})
+		return JSON.parse(JSON.stringify(data))
+	}
+)
+
 export const createService = actionClient
 	.schema(addServiceSchema)
 	.action<ReturnActionType>(async ({ parsedInput }) => {
