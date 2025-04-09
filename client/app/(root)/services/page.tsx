@@ -1,5 +1,5 @@
 import { getServices } from '@/actions/user.action'
-import ServiceCard from '@/components/card/service.card'
+import ServiceCard from '@/components/table/service.table'
 
 async function Page() {
 	const res = await getServices({})
