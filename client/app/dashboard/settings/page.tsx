@@ -1,5 +1,6 @@
 'use client'
 
+import { updatePassword, updateUser } from '@/actions/user.action'
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -22,19 +23,52 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
+import UseAction from '@/hooks/use-action'
 import { passwordSchema } from '@/lib/validation'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { signOut } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import { z } from 'zod'
 
 const Page = () => {
+	const { isLoading, onError, setIsLoading } = UseAction()
+
 	const form = useForm<z.infer<typeof passwordSchema>>({
 		resolver: zodResolver(passwordSchema),
 		defaultValues: { confirmPassword: '', newPassword: '', oldPassword: '' },
 	})
 
+	async function onDelete() {
+		setIsLoading(true)
+		const res = await updateUser({ isDeleted: true, deletedAt: new Date() })
+		if (res?.serverError || res?.validationErrors || !res?.data) {
+			return onError("Nimadir noto'g'ri ketdi!")
+		}
+		if (res.data.failure) {
+			return onError(res.data.failure)
+		}
+		if (res.data.status === 200) {
+			toast.success("Hisob raqam muvaffaqiyatli o'chirildi")
+			setIsLoading(false)
+			signOut({ callbackUrl: '/sign-up' })
+		}
+	}
+
 	async function onSubmit(values: z.infer<typeof passwordSchema>) {
-		console.log(values)
+		setIsLoading(true)
+		const res = await updatePassword(values)
+		if (res?.serverError || res?.validationErrors || !res?.data) {
+			return onError("Nimadir noto'g'ri ketdi!")
+		}
+		if (res.data.failure) {
+			return onError(res.data.failure)
+		}
+		if (res.data.status === 200) {
+			toast.success("Parol muvaffaqiyatli o'zgartirildi")
+			setIsLoading(false)
+			form.reset()
+		}
 	}
 
 	return (
@@ -64,8 +98,10 @@ const Page = () => {
 							</AlertDialogDescription>
 						</AlertDialogHeader>
 						<AlertDialogFooter>
-							<AlertDialogCancel>Ortga</AlertDialogCancel>
-							<AlertDialogAction>Davom etish</AlertDialogAction>
+							<AlertDialogCancel disabled={isLoading}>Ortga</AlertDialogCancel>
+							<AlertDialogAction disabled={isLoading} onClick={onDelete}>
+								Davom etish
+							</AlertDialogAction>
 						</AlertDialogFooter>
 					</AlertDialogContent>
 				</AlertDialog>
@@ -79,7 +115,7 @@ const Page = () => {
 								name='oldPassword'
 								render={({ field }) => (
 									<FormItem className='space-y-0'>
-										<Label>Oldingi parol</Label>
+										<Label>Eski parol</Label>
 										<FormControl>
 											<Input
 												placeholder='****'

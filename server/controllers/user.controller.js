@@ -56,16 +56,16 @@ class UserController {
 
 	async getStatistics(req, res, next) {
 		try {
-			const userId = '67e13b273de3c6efcbf02fb0'
+			const userId = req.user._id
 			const user = await userModel.findById(userId)
-
+			if (!user) return res.json({ failure: 'Foydalanuvchi topilmadi' })
 			const totalOrders = await orderModel.countDocuments({ user: user._id })
 			const totalTransactions = await transactionModel.countDocuments({
 				user: user._id,
 			})
 			const totalFavourites = user.favorites.length
-
-			return res.json({ totalOrders, totalTransactions, totalFavourites })
+			const statistics = { totalOrders, totalTransactions, totalFavourites }
+			return res.json({ statistics })
 		} catch (error) {
 			next(error)
 		}
@@ -105,16 +105,15 @@ class UserController {
 	async updatePassword(req, res, next) {
 		try {
 			const { oldPassword, newPassword } = req.body
-			const userId = '67e13b273de3c6efcbf02fb0'
+			const userId = req.user._id
 			const user = await userModel.findById(userId)
-
+			if (!user) return { failure: 'Foydalanuvchi topilmadi' }
 			const isPasswordMatch = await bcrypt.compare(oldPassword, user.password)
-			if (!isPasswordMatch)
-				return res.json({ failure: 'Old password is incorrect' })
+			if (!isPasswordMatch) return res.json({ failure: "Eski parol noto'g'ri" })
 
 			const hashedPassword = await bcrypt.hash(newPassword, 10)
 			await userModel.findByIdAndUpdate(userId, { password: hashedPassword })
-			res.json({ success: 'Password updated successfully' })
+			return res.json({ status: 200 })
 		} catch (error) {
 			next(error)
 		}

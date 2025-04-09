@@ -34,7 +34,9 @@ interface Props {
 const EditInformation: FC<Props> = ({ user }) => {
 	const [onOpen, setOnOpen] = useState(false)
 	const { update } = useSession()
+
 	const { isLoading, onError, setIsLoading } = UseAction()
+
 	const onUpdateAvatar = async (avatar: string, avatarKey: string) => {
 		setIsLoading(true)
 		const res = await updateUser({ avatar, avatarKey })
@@ -100,24 +102,22 @@ const EditInformation: FC<Props> = ({ user }) => {
 						<AccordionTrigger>
 							<div className='flex flex-col space-y-0'>
 								<h2 className='font-bold'>To'liq ism</h2>
-								<p className='text-muted-foreground'>Mustafo Juraboev</p>
+								<p className='text-muted-foreground'>{user.fullName}</p>
 							</div>
 						</AccordionTrigger>
 						<AccordionContent className='border-l border-l-primary pl-4'>
-							<FullNameForm />
+							<FullNameForm user={user} />
 						</AccordionContent>
 					</AccordionItem>
 					<AccordionItem value='item-2'>
 						<AccordionTrigger>
 							<div className='flex flex-col space-y-0'>
 								<h2 className='font-bold'>Email manzil</h2>
-								<p className='text-muted-foreground'>
-									info@mustafoalisherovic.uz
-								</p>
+								<p className='text-muted-foreground'>{user.email}</p>
 							</div>
 						</AccordionTrigger>
 						<AccordionContent className='border-l border-l-primary pl-4'>
-							<EmailForm />
+							<EmailForm user={user} />
 						</AccordionContent>
 					</AccordionItem>
 				</Accordion>

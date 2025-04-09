@@ -101,5 +101,5 @@ export const updateUserSchema = z.object({
 	avatar: z.string().optional(),
 	avatarKey: z.string().optional(),
 	isDeleted: z.boolean().optional(),
-	deletedAt: z.string().optional(),
+	deletedAt: z.date().optional(),
 })

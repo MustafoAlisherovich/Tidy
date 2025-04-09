@@ -1,4 +1,5 @@
 import { getTestimonials } from '@/service/testimonials.service'
+import Faq from './_components/faq'
 import FeaturesGuarantees from './_components/features-guarantees'
 import Hero from './_components/hero'
 import Testimonials from './_components/testimonials'
@@ -11,6 +12,7 @@ async function Page() {
 			<Hero />
 			<FeaturesGuarantees />
 			<Testimonials testimonials={testimonials} />
+			<Faq />
 		</>
 	)
 }

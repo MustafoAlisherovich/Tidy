@@ -21,7 +21,10 @@ function Testimonials({ testimonials }: Props) {
 
 	return (
 		<section className='p-6 mx-auto max-w-6xl'>
-			<h2 className='text-2xl font-bold mb-6'> Mijozlarimiz izohlari</h2>
+			<h2 className='text-2xl font-bold mb-6 text-center'>
+				{' '}
+				Mijozlarimiz izohlari
+			</h2>
 			<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start'>
 				{testimonials.map(item => (
 					<Card key={item.id} className='shadow-lg max-w-sm flex flex-col'>

@@ -68,3 +68,29 @@ export const adminSidebar = [
 	{ name: 'Buyurtmalar', route: '/admin/orders', icon: Heart },
 	{ name: "To'lovlar", route: '/admin/payments', icon: Banknote },
 ]
+
+export const faq = [
+	{
+		id: 1,
+		title: 'Siz qanday xizmatlar ko‘rsatasiz?',
+		description:
+			'Biz vebsayt yaratish, texnik qo‘llab-quvvatlash va dizayn xizmatlarini taqdim etamiz.',
+	},
+	{
+		id: 2,
+		title: 'Buyurtmani qanday berishim mumkin?',
+		description:
+			'Telegram yoki vebsaytimiz orqali bog‘lanib, buyurtma berishingiz mumkin.',
+	},
+	{
+		id: 3,
+		title: 'To‘lov qanday amalga oshiriladi?',
+		description: 'To‘lov Payme, Click yoki bank kartasi orqali qabul qilinadi.',
+	},
+	{
+		id: 4,
+		title: 'Xizmatlar narxi qancha?',
+		description:
+			'Narx xizmat turiga qarab o‘zgaradi. Batafsil ma’lumot uchun bog‘laning.',
+	},
+]
