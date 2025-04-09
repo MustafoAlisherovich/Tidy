@@ -3,8 +3,8 @@
 import { addFavorite } from '@/actions/user.action'
 import UseAction from '@/hooks/use-action'
 import { IService } from '@/types'
-import { CircleHelp, Plus } from 'lucide-react'
-import { FC, useState } from 'react'
+import { CircleHelp, Heart, Plus } from 'lucide-react'
+import { FC } from 'react'
 import { toast } from 'sonner'
 import { Button } from '../ui/button'
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '../ui/hover-card'
@@ -23,7 +23,6 @@ interface Props {
 
 const ServiceTable: FC<Props> = ({ service }) => {
 	const { onError, isLoading, setIsLoading } = UseAction()
-	const [isFavorite, setIsFavorite] = useState(false)
 
 	const onFavorite = async () => {
 		setIsLoading(true)
@@ -31,13 +30,13 @@ const ServiceTable: FC<Props> = ({ service }) => {
 			const res = await addFavorite({ id: service._id })
 
 			if (res?.serverError || res?.validationErrors || !res?.data) {
-				return onError('Something went wrong')
+				return onError('Nimadir xato ketdi')
 			}
 			if (res.data.failure) {
 				return onError(res.data.failure)
 			}
 			if (res.data.status === 200) {
-				toast.success('Added to favorites')
+				toast.success("Sevimlilarga qo'shildi")
 			}
 		} catch (error) {
 			onError('Server bilan aloqa uzildi')
@@ -50,6 +49,7 @@ const ServiceTable: FC<Props> = ({ service }) => {
 		<Table className='min-w-full text-left border'>
 			<TableHeader>
 				<TableRow>
+					<TableHead className='p-2'>Sevimli</TableHead>
 					<TableHead className='p-2'>Xizmat nomi</TableHead>
 					<TableHead className='p-2'>Narx</TableHead>
 					<TableHead className='p-2'>Tavsif</TableHead>
@@ -58,6 +58,17 @@ const ServiceTable: FC<Props> = ({ service }) => {
 			</TableHeader>
 			<TableBody>
 				<TableRow key={service._id} className='border-t'>
+					<TableCell>
+						<Button
+							size='icon'
+							variant='outline'
+							disabled={isLoading}
+							onClick={onFavorite}
+							className='cursor-pointer'
+						>
+							<Heart />
+						</Button>
+					</TableCell>
 					<TableCell className='p-2'>{service.name}</TableCell>
 					<TableCell className='p-2'>
 						{service.price.toLocaleString()} so'm
@@ -78,12 +89,7 @@ const ServiceTable: FC<Props> = ({ service }) => {
 						)}
 					</TableCell>
 					<TableCell className='p-2'>
-						<Button
-							variant='outline'
-							size='icon'
-							onClick={onFavorite}
-							disabled={isLoading}
-						>
+						<Button variant='outline' size='icon' disabled={isLoading}>
 							<Plus />
 						</Button>
 					</TableCell>

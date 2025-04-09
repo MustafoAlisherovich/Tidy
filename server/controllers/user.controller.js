@@ -26,9 +26,31 @@ class UserController {
 
 	async getOrders(req, res, next) {
 		try {
-			const userId = '67e13b273de3c6efcbf02fb0'
-			const orders = await orderModel.find({ user: userId })
-			return res.json(orders)
+			const userId = req.user._id
+			const orders = await orderModel.aggregate([
+				{ $match: { user: userId } },
+				{
+					$lookup: {
+						from: 'services',
+						localField: 'service',
+						foreignField: '_id',
+						as: 'service',
+					},
+				},
+				{ $unwind: '$service' },
+				{
+					$project: {
+						'service.name': 1,
+						'service.price': 1,
+						createdAt: 1,
+						updatedAt: 1,
+						price: 1,
+						status: 1,
+					},
+				},
+			])
+
+			return res.json({ orders })
 		} catch (error) {
 			next(error)
 		}
@@ -36,9 +58,31 @@ class UserController {
 
 	async getTransactions(req, res, next) {
 		try {
-			const userId = '67e13b273de3c6efcbf02fb0'
-			const transactions = await transactionModel.find({ user: userId })
-			return res.json(transactions)
+			const userId = req.user._id
+			const transactions = await transactionModel.aggregate([
+				{ $match: { user: userId } },
+				{
+					$lookup: {
+						from: 'services',
+						localField: 'service',
+						foreignField: '_id',
+						as: 'service',
+					},
+				},
+				{ $unwind: '$service' },
+				{
+					$project: {
+						'service.name': 1,
+						amount: 1,
+						state: 1,
+						create_time: 1,
+						perform_time: 1,
+						reason: 1,
+						provider: 1,
+					},
+				},
+			])
+			return res.json({ transactions })
 		} catch (error) {
 			next(error)
 		}
@@ -46,9 +90,11 @@ class UserController {
 
 	async getFavorites(req, res, next) {
 		try {
-			const userId = '67e13b273de3c6efcbf02fb0'
-			const user = await userModel.findById(userId).populate('favorites')
-			return res.json(user.favorites)
+			const userId = req.user._id
+			const user = await userModel.findById(userId)
+			const matchQuery = { _id: { $in: user.favorites } }
+			const services = await serviceModel.find(matchQuery)
+			return res.json({ services })
 		} catch (error) {
 			next(error)
 		}
@@ -84,7 +130,7 @@ class UserController {
 			const user = await userModel.findById(userId)
 			user.favorites.push(productId)
 			await user.save()
-			return res.json(user)
+			return res.json({ status: 200 })
 		} catch (error) {
 			next(error)
 		}
@@ -122,11 +168,11 @@ class UserController {
 	async deleteFavorite(req, res, next) {
 		try {
 			const { id } = req.params
-			const userId = '67e13b273de3c6efcbf02fb0'
+			const userId = req.user._id
 			const user = await userModel.findById(userId)
 			user.favorites.pull(id)
 			await user.save()
-			return res.json({ success: 'Service removed from favorites' })
+			return res.json({ status: 200 })
 		} catch (error) {
 			next(error)
 		}

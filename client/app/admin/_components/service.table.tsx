@@ -65,7 +65,6 @@ const ServiceTable: FC<Props> = ({ service }) => {
 		}
 
 		if (res.data.status === 200) {
-			// Zustand holatidan o‘chirish
 			useService.setState(prev => ({
 				service: prev.service?.filter(s => s._id !== id) || [],
 			}))

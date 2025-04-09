@@ -41,7 +41,7 @@ const Page = async () => {
 						<h1 className='text-4xl font-bold'>
 							{statistics?.totalFavourites}
 						</h1>
-						<p>Ro'yxat</p>
+						<p>Sevimli xizmatlar</p>
 					</div>
 				</div>
 			</div>

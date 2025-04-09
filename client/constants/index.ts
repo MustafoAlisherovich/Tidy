@@ -58,7 +58,7 @@ export const dashboardSidebar = [
 	{ name: "Shaxsiy ma'lumot", route: '/dashboard', icon: User },
 	{ name: 'Buyurtmalar', route: '/dashboard/orders', icon: Shuffle },
 	{ name: "To'lovlar", route: '/dashboard/payments', icon: Banknote },
-	{ name: "Ro'yxat", route: '/dashboard/watch-list', icon: Heart },
+	{ name: 'Sevimli xizmatlar', route: '/dashboard/watch-list', icon: Heart },
 	{ name: 'Sozlamalar', route: '/dashboard/settings', icon: Settings2 },
 ]
 

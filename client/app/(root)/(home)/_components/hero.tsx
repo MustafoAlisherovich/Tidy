@@ -24,7 +24,7 @@ function Hero() {
 				<Link href={'/services'}>
 					<Button
 						size={'lg'}
-						className='px-6 py-3 rounded-lg text-lg font-medium transition max-md:px-4 max-md:py-2 max-md:text-base'
+						className='px-6 py-3 rounded-lg text-lg font-medium transition max-md:px-4 max-md:py-2 max-md:text-base cursor-pointer'
 					>
 						Bizning xizmatlar
 					</Button>
