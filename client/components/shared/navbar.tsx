@@ -1,17 +1,22 @@
+'use client'
+
 import Logo from '@/components/shared/logo'
 import { Button } from '@/components/ui/button'
 import { navLinks } from '@/constants'
-import { authOptions } from '@/lib/auth-options'
+import { useCart } from '@/hooks/use-cart'
 import { cn } from '@/lib/utils'
-import { User } from 'lucide-react'
-import { getServerSession } from 'next-auth'
+import { ShoppingBasket, User } from 'lucide-react'
+import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
+import NoSSR from 'react-no-ssr'
 import Mobile from '../../app/(root)/_components/mobile'
 import UserBox from './user-box'
 
-async function Navbar() {
-	const session = await getServerSession(authOptions)
+function Navbar() {
+	const { data: session } = useSession()
+
+	const { cartsLength } = useCart()
 
 	return (
 		<div className='inset-0 h-20  transition-all'>
@@ -34,7 +39,25 @@ async function Navbar() {
 				</div>
 
 				<div className='flex items-center gap-2'>
-					<div className='flex items-center gap-2 md:border-r md:pr-3'>
+					<div className='flex items-center gap-3 md:border-r md:pr-3'>
+						<Button
+							variant={cartsLength ? 'secondary' : 'ghost'}
+							size='icon'
+							asChild
+							className='relative'
+						>
+							<Link href={'/cart'}>
+								<ShoppingBasket />
+								<NoSSR>
+									{cartsLength() ? (
+										<div className='absolute -right-2 -top-2 flex size-6 items-center justify-center rounded-full bg-destructive text-white'>
+											{cartsLength()}
+										</div>
+									) : null}
+								</NoSSR>
+							</Link>
+						</Button>
+
 						<Mobile />
 						{session?.currentUser?._id && (
 							<UserBox user={session.currentUser} />

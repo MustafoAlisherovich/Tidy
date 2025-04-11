@@ -1,5 +1,5 @@
 import { getServices } from '@/actions/user.action'
-import ServiceCard from '@/components/table/service.table'
+import ServiceCard from '@/components/cards/service.card'
 
 async function Page() {
 	const res = await getServices({})
@@ -9,7 +9,7 @@ async function Page() {
 			<div className='flex justify-between items-center'>
 				<h1 className='text-xl font-bold'>Xizmatlar</h1>
 			</div>
-			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4'>
+			<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-4'>
 				{service &&
 					service.map(service => (
 						<ServiceCard key={service._id} service={service} />

@@ -10,6 +10,7 @@ import {
 	TableRow,
 } from '@/components/ui/table'
 import UseAction from '@/hooks/use-action'
+import { formatPrice } from '@/lib/utils'
 import { IService } from '@/types'
 import { CircleHelp, Trash2 } from 'lucide-react'
 import { FC } from 'react'
@@ -52,9 +53,7 @@ const WatchListTable: FC<Props> = ({ service }) => {
 			<TableBody>
 				<TableRow key={service._id} className='border-t'>
 					<TableCell className='p-2'>{service.name}</TableCell>
-					<TableCell className='p-2'>
-						{service.price.toLocaleString()} so'm
-					</TableCell>
+					<TableCell className='p-2'>{formatPrice(service.price)}</TableCell>
 
 					<TableCell className='p-2'>
 						{service.description && (
