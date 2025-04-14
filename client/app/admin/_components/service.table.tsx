@@ -41,13 +41,7 @@ interface Props {
 }
 
 const ServiceTable: FC<Props> = ({ service }) => {
-	const { setOpen, setService } = useService()
 	const { isLoading, onError, setIsLoading } = UseAction()
-
-	const onEdit = () => {
-		setOpen(true)
-		setService(service)
-	}
 
 	async function onDelete(id: string) {
 		setIsLoading(true)

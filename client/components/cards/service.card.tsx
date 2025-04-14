@@ -22,7 +22,7 @@ const ServiceCard: FC<Props> = ({ service }) => {
 	const { onError, isLoading, setIsLoading } = UseAction()
 	const { addToCart } = useCart()
 	const router = useRouter()
-	const { data: session, status } = useSession()
+	const { status } = useSession()
 
 	const onCart = () => {
 		if (status !== 'authenticated') {
@@ -49,6 +49,7 @@ const ServiceCard: FC<Props> = ({ service }) => {
 				toast.success("Sevimlilarga qo'shildi")
 			}
 		} catch (error) {
+			console.log(error)
 			onError('Server bilan aloqa uzildi')
 		} finally {
 			setIsLoading(false)
