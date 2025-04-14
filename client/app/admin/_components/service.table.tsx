@@ -1,6 +1,7 @@
 'use client'
 
 import { deleteService } from '@/actions/admin.action'
+import NoSSR from '@/components/shared/no-ssr'
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -33,7 +34,6 @@ import { formatPrice } from '@/lib/utils'
 import { IService } from '@/types'
 import { CircleHelp, Trash2 } from 'lucide-react'
 import { FC } from 'react'
-import NoSSR from 'react-no-ssr'
 import { toast } from 'sonner'
 
 interface Props {

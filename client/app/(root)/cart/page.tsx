@@ -1,12 +1,12 @@
 'use client'
 
+import NoSSR from '@/components/shared/no-ssr'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { useCart } from '@/hooks/use-cart'
 import { formatPrice } from '@/lib/utils'
 import Link from 'next/link'
-import NoSSR from 'react-no-ssr'
 import CartCard from './_components/cart.card'
 
 const Page = () => {

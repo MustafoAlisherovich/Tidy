@@ -1,6 +1,7 @@
 'use client'
 
 import Logo from '@/components/shared/logo'
+import NoSSR from '@/components/shared/no-ssr'
 import { Button } from '@/components/ui/button'
 import { navLinks } from '@/constants'
 import { useCart } from '@/hooks/use-cart'
@@ -9,7 +10,6 @@ import { ShoppingBasket, User } from 'lucide-react'
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import NoSSR from 'react-no-ssr'
 import Mobile from '../../app/(root)/_components/mobile'
 import UserBox from './user-box'
 
