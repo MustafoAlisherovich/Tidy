@@ -1,6 +1,6 @@
 # 🧼 Home Cleaning Services Website
 
-A modern web application for booking home cleaning services. Built with **Next.js**, **Hygraph**, and **Firebase**.
+A modern web application for booking home cleaning services. Built with **Next.js**, **Hygraph**, and **NextAuth.
 
 ## 🌟 Features
 
@@ -24,8 +24,7 @@ A modern web application for booking home cleaning services. Built with **Next.j
 - ⚛️ Next.js
 - 💅 Tailwind CSS
 - 💬 Hygraph (GraphQL CMS)
-- 🔥 Firebase Authentication & Firestore
-- 💳 Stripe (or your payment integration)
+- 🔥 Next-Auth Authentication
 
 ## 🖼️ Demo
 
