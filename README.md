@@ -33,19 +33,19 @@ Live preview: [tidy-ten.vercek.app](https://tidy-ten.vercel.app/)
 ## 🖼️ Screenshots
 
 ### 🏠 Home Page
-![Home](./public/preview/img1.png)
+![Home](client/public/preview/img1.png)
 
 ### 🧹 Services Page
-![Services](./public/preview/img4.png)
+![Services](client/public/preview/img4.png)
 
 ### 🛒 Cart Page
-![Cart](./public/preview/img5.png)
+![Cart](client/public/preview/img5.png)
 
 ### 📦 Dashboard
-![Orders](./public/preview/img6.png)
+![Orders](client/public/preview/img6.png)
 
 ### 🛠️ Admin Panel
-![Admin](./public/preview/img7.png)
+![Admin](client/public/preview/img7.png)
 
 
 ## ⚙️ Getting Started
