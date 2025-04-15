@@ -15,11 +15,12 @@ function Hero() {
 			/>
 
 			<div className='absolute inset-0 flex flex-col items-center justify-center text-center text-white bg-black/50 p-6'>
-				<h1 className='text-4xl font-bold mb-4 max-md:text-3xl'>lorem</h1>
+				<h1 className='text-4xl font-bold mb-4 max-md:text-3xl font-poppins'>
+					Uyingiz har doim toza!
+				</h1>
 				<p className='text-lg mb-6 max-w-lg max-md:text-base'>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint dolores
-					laboriosam tempore magnam quos commodi nulla exercitationem, nostrum
-					expedita nisi doloribus in totam aut a vel cum magni sed fugit!
+					Bizning professional tozalash xizmatlarimiz bilan uyingizni toza va
+					sog'lom saqlang.
 				</p>
 				<Link href={'/services'}>
 					<Button

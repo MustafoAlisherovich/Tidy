@@ -15,33 +15,37 @@ const Page = async () => {
 		<>
 			<h1 className='text-2xl font-semibold'>Personal information</h1>
 			<Separator className='my-2' />
+
 			<EditInformation
 				user={JSON.parse(JSON.stringify(session?.currentUser))}
 			/>
-			<div className='grid grid-cols-3 gap-4'>
-				<div className='border-2 p-2 flex justify-center flex-col space-y-2 items-center shadow-md hover:animate-pulse transition-all cursor-pointer'>
-					<Shuffle size={50} />
+
+			<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6'>
+				<div className='border-2 p-4 flex justify-center flex-col space-y-2 items-center shadow-md hover:animate-pulse transition-all cursor-pointer rounded-lg'>
+					<Shuffle size={40} />
 					<div className='text-center'>
-						<h1 className='text-4xl font-bold'>{statistics?.totalOrders}</h1>
-						<p>Buyurtmalar</p>
+						<h1 className='text-3xl font-bold'>{statistics?.totalOrders}</h1>
+						<p className='text-sm'>Buyurtmalar</p>
 					</div>
 				</div>
-				<div className='border-2 p-2 flex justify-center flex-col space-y-2 items-center shadow-md hover:animate-pulse transition-all cursor-pointer'>
-					<Banknote size={50} />
+
+				<div className='border-2 p-4 flex justify-center flex-col space-y-2 items-center shadow-md hover:animate-pulse transition-all cursor-pointer rounded-lg'>
+					<Banknote size={40} />
 					<div className='text-center'>
-						<h1 className='text-4xl font-bold'>
+						<h1 className='text-3xl font-bold'>
 							{statistics?.totalTransactions}
 						</h1>
-						<p>To'lovlar</p>
+						<p className='text-sm'>To'lovlar</p>
 					</div>
 				</div>
-				<div className='border-2 p-2 flex justify-center flex-col space-y-2 items-center shadow-md hover:animate-pulse transition-all cursor-pointer'>
-					<Heart size={50} />
+
+				<div className='border-2 p-4 flex justify-center flex-col space-y-2 items-center shadow-md hover:animate-pulse transition-all cursor-pointer rounded-lg'>
+					<Heart size={40} />
 					<div className='text-center'>
-						<h1 className='text-4xl font-bold'>
+						<h1 className='text-3xl font-bold'>
 							{statistics?.totalFavourites}
 						</h1>
-						<p>Sevimli xizmatlar</p>
+						<p className='text-sm'>Sevimli xizmatlar</p>
 					</div>
 				</div>
 			</div>

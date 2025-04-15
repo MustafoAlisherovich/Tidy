@@ -8,17 +8,24 @@ const Page = async () => {
 
 	return (
 		<>
-			<h1 className='text-xl font-bold'>Sevimli xizmatlar</h1>
+			<h1 className='text-xl md:text-2xl font-bold'>Sevimli xizmatlar</h1>
 
 			<Separator className='my-3' />
 
 			{services && services.length === 0 && (
-				<div className='text-center mt-3'>Xizmat topilmadi</div>
+				<div className='text-center mt-4 text-sm text-muted-foreground'>
+					Xizmat topilmadi
+				</div>
 			)}
-			{services &&
-				services.map(service => (
-					<WatchListTable key={service._id} service={service} />
-				))}
+
+			<div className='space-y-2'>
+				{services &&
+					services.map(service => (
+						<div key={service._id} className='rounded-md border p-2 shadow-sm'>
+							<WatchListTable service={service} />
+						</div>
+					))}
+			</div>
 		</>
 	)
 }

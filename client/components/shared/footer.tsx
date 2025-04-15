@@ -15,15 +15,13 @@ function Footer() {
 					<div className='flex flex-col space-y-3 md:col-span-2'>
 						<Logo />
 						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
-							modi numquam repellendus culpa quis odit, quisquam sit quo
-							deserunt, earum consectetur expedita! Repellat, delectus
-							aspernatur. Culpa non asperiores tenetur quod?
+							Bizning professional tozalash xizmatlarimiz bilan uyingizni toza
+							va sog'lom saqlang.
 						</p>
 					</div>
 
 					<div className='flex flex-col space-y-3'>
-						<h1 className='font-space-grotesk text-3xl'>Sahifalar</h1>
+						<h1 className='font-semibold font-poppins text-3xl'>Sahifalar</h1>
 						<div className='flex flex-col space-y-3 pt-6'>
 							{navLinks.map(nav => (
 								<Link
@@ -38,9 +36,7 @@ function Footer() {
 					</div>
 
 					<div className='flex flex-col space-y-3'>
-						<h1 className='font-space-grotesk text-3xl'>
-							Biz bilan bog'laning
-						</h1>
+						<h1 className='font-semibold text-3xl font-poppins'>Aloqa</h1>
 						<div className='flex flex-col space-y-3 pt-6'>
 							<div className='flex items-center space-x-3'>
 								<PhoneCall size={20} />

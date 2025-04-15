@@ -23,39 +23,41 @@ const Page = async () => {
 
 			<Separator className='my-3' />
 
-			<Table className='text-sm'>
-				{transactions && transactions.length > 0 && (
-					<TableCaption>Sizning oxirgi to'lovlaringiz ro'yxati.</TableCaption>
-				)}
-				<TableHeader>
-					<TableRow>
-						<TableHead>Product</TableHead>
-						<TableHead>Provider</TableHead>
-						<TableHead>Status</TableHead>
-						<TableHead className='text-right'>Price</TableHead>
-					</TableRow>
-				</TableHeader>
-				<TableBody>
-					{transactions && transactions.length === 0 && (
-						<TableRow>
-							<TableCell className='text-center' colSpan={4}>
-								To'lovlar topilmadi
-							</TableCell>
-						</TableRow>
+			<div className='w-full overflow-x-auto'>
+				<Table className='min-w-[500px] text-sm'>
+					{transactions && transactions.length > 0 && (
+						<TableCaption>Sizning oxirgi to'lovlaringiz ro'yxati.</TableCaption>
 					)}
-					{transactions &&
-						transactions.map(transaction => (
-							<TableRow key={transaction._id}>
-								<TableCell>{transaction.service.name}</TableCell>
-								<TableCell>{transaction.provider}</TableCell>
-								<TableCell>{transaction.state}</TableCell>
-								<TableCell className='text-right'>
-									{formatPrice(transaction.amount)}
+					<TableHeader>
+						<TableRow>
+							<TableHead>Product</TableHead>
+							<TableHead>Provider</TableHead>
+							<TableHead>Status</TableHead>
+							<TableHead className='text-right'>Price</TableHead>
+						</TableRow>
+					</TableHeader>
+					<TableBody>
+						{transactions && transactions.length === 0 && (
+							<TableRow>
+								<TableCell className='text-center' colSpan={4}>
+									To'lovlar topilmadi
 								</TableCell>
 							</TableRow>
-						))}
-				</TableBody>
-			</Table>
+						)}
+						{transactions &&
+							transactions.map(transaction => (
+								<TableRow key={transaction._id}>
+									<TableCell>{transaction.service.name}</TableCell>
+									<TableCell>{transaction.provider}</TableCell>
+									<TableCell>{transaction.state}</TableCell>
+									<TableCell className='text-right'>
+										{formatPrice(transaction.amount)}
+									</TableCell>
+								</TableRow>
+							))}
+					</TableBody>
+				</Table>
+			</div>
 		</>
 	)
 }

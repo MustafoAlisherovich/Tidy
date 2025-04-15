@@ -12,6 +12,19 @@ export interface ITestimonial {
 	image: { url: string }
 }
 
+export interface IFeature {
+	id: string
+	title: string
+	text: string
+	icon: { url: string }
+}
+
+export interface IFaq {
+	id: string
+	title: string
+	description: string
+}
+
 export interface IService {
 	_id: string
 	name: string

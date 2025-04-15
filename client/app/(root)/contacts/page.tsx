@@ -12,11 +12,13 @@ async function Page() {
 			<div className='container mx-auto max-w-6xl mt-24'>
 				<div className='mt-6 grid grid-cols-2 gap-4 max-md:grid-cols-1'>
 					<div className='flex flex-col'>
-						<h1 className='font-poppins text-4xl font-bold'>Hello</h1>
+						<h1 className='font-poppins text-4xl font-bold'>
+							Biz bilan bog'laning
+						</h1>
 						<p className='mt-2 text-muted-foreground'>
-							Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum
-							excepturi quas a aut commodi ex est perspiciatis obcaecati eaque
-							saepe, fugit esse ipsam id quos nihil distinctio amet maiores sed?
+							Sizga yordam bera olishimiz uchun bizga qo'ng'iroq qilishingiz
+							mumkin, yoki bizga xat yozing. Biz sizga yordam berishdan
+							mamnunmiz.
 						</p>
 
 						<div className='mt-12 flex items-center gap-3'>
@@ -30,7 +32,9 @@ async function Page() {
 					</div>
 
 					<div>
-						<h1 className='mb-2 font-poppins text-4xl font-bold'>lorem</h1>
+						<h1 className='mb-2 font-poppins text-4xl font-bold'>
+							Aloqa foramsi
+						</h1>
 						<ContactForm />
 					</div>
 				</div>

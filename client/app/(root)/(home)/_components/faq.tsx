@@ -4,12 +4,16 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from '@/components/ui/accordion'
-import { faq } from '@/constants'
+import { IFaq } from '@/types'
 
-const Faq = () => {
+interface Props {
+	faq: IFaq[]
+}
+
+const Faq = ({ faq }: Props) => {
 	return (
 		<div className='max-w-3xl mx-auto p-4'>
-			<h2 className='text-center text-2xl font-bold mb-6 max-sm:text-xl'>
+			<h2 className='text-center text-2xl font-bold mb-6 max-sm:text-xl font-poppins'>
 				Ko‘p so‘raladigan savollar
 			</h2>
 			<Accordion

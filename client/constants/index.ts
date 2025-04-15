@@ -1,7 +1,6 @@
 import {
 	Banknote,
 	CheckCircle,
-	DollarSign,
 	Heart,
 	Home,
 	Phone,
@@ -16,7 +15,6 @@ import {
 export const navLinks = [
 	{ route: '', name: 'Bosh sahifa', icon: Home },
 	{ route: 'services', name: 'Xizmatlar', icon: Sparkles },
-	{ route: 'price', name: 'Narxlar', icon: DollarSign },
 	{ route: 'contacts', name: 'Aloqa', icon: Phone },
 ]
 
@@ -39,19 +37,6 @@ export const servicesHome = [
 	{ _id: 4, name: 'Chang artish', price: 50000 },
 	{ _id: 5, name: 'Oyna artish', price: 50000 },
 	{ _id: 6, name: "Narsalarni yig'ishtirish", price: 50000 },
-	{ _id: 7, name: 'Axlatni olib chiqib ketish', price: 50000 },
-	{ _id: 8, name: 'Jundan tozalash', price: 50000 },
-	{ _id: 9, name: 'Changyutgich ishlatish', price: 50000 },
-	{ _id: 10, name: 'Kiyimlarni taxlash', price: 50000 },
-	{ _id: 11, name: 'Qandil yuvish', price: 50000 },
-	{ _id: 12, name: 'Rakovina yuvish', price: 50000 },
-	{ _id: 13, name: 'Idishlarni yuvish', price: 50000 },
-	{ _id: 14, name: 'Gaz plitasini yuvish', price: 50000 },
-	{ _id: 15, name: "Stol ustini yig'ishtirish", price: 50000 },
-	{ _id: 16, name: 'Vanna va Dush xonasini yuvish', price: 50000 },
-	{ _id: 17, name: 'Rakovina yuvish', price: 50000 },
-	{ _id: 18, name: 'Tualet tozalash', price: 50000 },
-	{ _id: 19, name: 'Hammon kafellarini tozalash', price: 50000 },
 ]
 
 export const dashboardSidebar = [

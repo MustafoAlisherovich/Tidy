@@ -51,9 +51,9 @@ function ContactForm() {
 			.finally(() => setIsLoading(false))
 
 		toast.promise(promise, {
-			loading: 'Loading...',
-			success: 'successfully!',
-			error: 'Something went wrong!',
+			loading: 'Yuklash...',
+			success: 'Muvaffaqiyatli yuborildi!',
+			error: 'Nimadir xato ketdi!',
 		})
 	}
 

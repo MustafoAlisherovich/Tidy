@@ -75,26 +75,28 @@ const Page = () => {
 		<>
 			<h1 className='text-2xl font-semibold'>Sozlamalar</h1>
 			<Separator className='my-3' />
-			<div className='p-4 bg-secondary flex flex-col space-y-0'>
-				<div className='text-lg font-bold'>Delete account</div>
+
+			{/* Account o'chirish */}
+			<div className='p-4 bg-secondary flex flex-col space-y-2 rounded-md'>
+				<div className='text-lg font-bold'>Accountni o'chirish</div>
 				<p className='text-sm text-muted-foreground'>
 					Hisobingizni o'chirib tashlasangiz, barcha ma'lumotlaringiz bizning
 					serverlarimizdan o'chiriladi.
 				</p>
 				<AlertDialog>
 					<AlertDialogTrigger asChild>
-						<Button className='w-fit mt-3' size={'sm'} variant={'destructive'}>
+						<Button className='w-fit mt-2' size='sm' variant='destructive'>
 							Accountni O'chirish
 						</Button>
 					</AlertDialogTrigger>
 					<AlertDialogContent>
 						<AlertDialogHeader>
-							<AlertDialogTitle>Rostdan ham o'chirmoqchimisiz</AlertDialogTitle>
+							<AlertDialogTitle>
+								Rostdan ham o'chirmoqchimisiz?
+							</AlertDialogTitle>
 							<AlertDialogDescription>
 								Bu amalni ortga qaytarib bo‘lmaydi. Bu sizning
-								ma'lumotlaringizni butunlay o'chirib tashlaydi hisob
-								qaydnomangiz va ma'lumotlaringizni serverlarimizdan olib
-								tashlanadi.
+								ma'lumotlaringizni butonlay o'chirib tashlaydi.
 							</AlertDialogDescription>
 						</AlertDialogHeader>
 						<AlertDialogFooter>
@@ -106,15 +108,17 @@ const Page = () => {
 					</AlertDialogContent>
 				</AlertDialog>
 			</div>
-			<div className='p-4 bg-secondary mt-4'>
-				<div className='w-1/2'>
+
+			{/* Parolni o'zgartirish form */}
+			<div className='p-4 bg-secondary mt-4 rounded-md'>
+				<div className='w-full md:w-2/3'>
 					<Form {...form}>
-						<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-2'>
+						<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-3'>
 							<FormField
 								control={form.control}
 								name='oldPassword'
 								render={({ field }) => (
-									<FormItem className='space-y-0'>
+									<FormItem className='space-y-1'>
 										<Label>Eski parol</Label>
 										<FormControl>
 											<Input
@@ -132,7 +136,7 @@ const Page = () => {
 								control={form.control}
 								name='newPassword'
 								render={({ field }) => (
-									<FormItem className='space-y-0'>
+									<FormItem className='space-y-1'>
 										<Label>Yangi parol</Label>
 										<FormControl>
 											<Input
@@ -150,7 +154,7 @@ const Page = () => {
 								control={form.control}
 								name='confirmPassword'
 								render={({ field }) => (
-									<FormItem className='space-y-0'>
+									<FormItem className='space-y-1'>
 										<Label>Parolni tasdiqlang</Label>
 										<FormControl>
 											<Input
@@ -164,7 +168,9 @@ const Page = () => {
 									</FormItem>
 								)}
 							/>
-							<Button type='submit'>Yuborish</Button>
+							<Button type='submit' className='w-full sm:w-fit'>
+								Yuborish
+							</Button>
 						</form>
 					</Form>
 				</div>

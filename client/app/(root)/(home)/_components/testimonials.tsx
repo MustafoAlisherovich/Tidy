@@ -21,7 +21,7 @@ function Testimonials({ testimonials }: Props) {
 
 	return (
 		<section className='p-6 mx-auto max-w-6xl'>
-			<h2 className='text-2xl font-bold mb-6 text-center'>
+			<h2 className='text-2xl font-bold mb-6 text-center font-poppins'>
 				{' '}
 				Mijozlarimiz izohlari
 			</h2>
