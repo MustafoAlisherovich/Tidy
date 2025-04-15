@@ -28,7 +28,7 @@ A modern web application for booking home cleaning services. Built with **Next.j
 
 ## 🖼️ Demo
 
-Live preview: [tidy-ten.vercek.app](https://tidy-ten.vercel.app/)
+Live preview: [Tidy](https://tidy-ten.vercel.app/)
 
 ## 🖼️ Screenshots
 
